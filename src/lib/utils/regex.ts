@@ -1,0 +1,1 @@
+export const mobileRegex=/^09\d{9}$/

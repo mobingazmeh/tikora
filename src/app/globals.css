@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  scroll-behavior: smooth;
+}
+body {
+  direction: rtl;
+   ;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+
+.main-slider-bullet {
+  @apply cursor-pointer bg-caption rounded-full !transition-all !w-2 !h-2;
+}
+.main-slider-active-bullet {
+  @apply !bg-primary-500 !transition-all !opacity-100 !w-4 !h-2 !rounded-full;
+}
+
+.divide-box {
+  @apply divide-x divide-y;
+}
+
+.divide-box>div:first-child{
+  @apply border-x border-t 
+}
+.divide-box>div:nth-child(4n+1){
+  @apply !border-r border-t 
+}
+
+.Toastify__toast{
+  font-family: var(--font-iran-yekan);
+}
+.ltr{
+  direction: ltr;
+}
+.rtl{
+  direction: rtl;
+}
+.all-rtl *{
+  direction: rtl;
+ 
+}
+.all-ltr *{
+  direction: ltr;
+}
+
+.Toastify__progress-bar{
+  @apply !bg-primary-500  ;
+}  

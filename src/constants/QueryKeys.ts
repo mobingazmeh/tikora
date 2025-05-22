@@ -1,0 +1,16 @@
+export const QUERY_KEYS = {
+  appConfig: "APP_CONFIG",
+  categories: "CATEGORIES",
+  home: "HOME",
+  products: "PRODUCTS",
+  productDetails: "PRODUCT_DETAILS",
+  marketDetails: "MARKET_DETAILS",
+  brands: "BRANDS",
+  profile: "PROFILE",
+  countries: "COUNTRIES",
+  provinces: "PROVINCES",
+  cities: "CITIES",
+  basketDetails: "BASKET_DETAILS",
+  favouritesList: "FAVOURITES_LIST",
+  favouritesToggle: "FAVOURITES_TOGGLE",
+};

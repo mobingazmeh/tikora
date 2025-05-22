@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /* هدف کامپایلر - نسخه ES2017 */
+    "target": "ES2017",
+    /* کتابخانه‌های مورد نیاز */
+    "lib": ["dom", "dom.iterable", "esnext"],
+    /* اجازه استفاده از فایل‌های JavaScript */
+    "allowJs": true,
+    /* عدم بررسی فایل‌های کتابخانه‌ها */
+    "skipLibCheck": true,
+    /* فعال کردن حالت سخت‌گیرانه */
+    "strict": true,
+    /* عدم تولید فایل خروجی */
+    "noEmit": true,
+    /* فعال کردن قابلیت ES Module */
+    "esModuleInterop": true,
+    /* نوع ماژول‌ها */
+    "module": "esnext",
+    /* روش حل ماژول‌ها */
+    "moduleResolution": "bundler",
+    /* امکان import کردن فایل‌های JSON */
+    "resolveJsonModule": true,
+    /* کامپایل جداگانه هر فایل */
+    "isolatedModules": true,
+    /* نحوه پردازش JSX */
+    "jsx": "preserve",
+    /* فعال کردن کامپایل افزایشی */
+    "incremental": true,
+    /* پلاگین‌های مورد نیاز */
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    /* تعریف مسیرهای کوتاه (aliases) */
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/public/": ["./public/*"]
+    }
+  },
+  /* فایل‌های شامل در کامپایل */
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  /* فایل‌های مستثنی از کامپایل */
+  "exclude": ["node_modules"]
+}
