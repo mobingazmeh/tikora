@@ -74,13 +74,13 @@ export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderP
           modules={[Navigation, Pagination]}
           className="border-y !overflow-y-auto !h-fit !px-4 group"
         >
-          {data.data.map((item) => (
+          {Array.isArray(data) ? data.map((item) => (
             <SwiperSlide key={item?.id}>
               <div className="bg-white rounded-lg overflow-hidden w-full p-4">
                 <ProductItem item={item} />
               </div>
             </SwiperSlide>
-          ))}
+          )) : null}
 
           {/* دکمه‌های کنترل اسلایدر */}
           <ProductSliderButtons nextElmId={nextElId} prevElmId={prevElId} />

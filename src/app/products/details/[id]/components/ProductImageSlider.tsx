@@ -40,13 +40,12 @@ function ProductRawImageSlider({
   const rawId = useId(); // شناسه خام تولید شده توسط useId
   const uniqueId = rawId.replaceAll(":", "");
   // وضعیت تصویر فعال
-  const images = [{ id: "cover", path: product.cover }, ...product.images];
+  const images = [{ id: "cover", path: product.cover }, ...product.images.map((img, index) => ({ id: `img-${index}`, path: img.source }))];
   const swiperRef = useRef<any>(null); // استفاده از useRef برای گرفتن دسترسی به Swiper
 
   useEffect(() => {
     swiperRef.current.swiper.slideTo(activeIndex); // اسلاید به ایندکس جدید
   }, [activeIndex]);
-
   return (
     <div className="relative sm:px-0 px-4">
       <Swiper

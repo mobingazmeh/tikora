@@ -1,6 +1,7 @@
-import { ShoppingCartState } from '@/services/orders/useGetOrders';
+import { ShoppingCartState } from '@/services/cart/useGetCartDetails';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+
 
 const useShoppingCartStore = create<ShoppingCartState>()(
   persist(

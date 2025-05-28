@@ -11,7 +11,6 @@ interface ProductDescription {
 // کامپوننت نمایش توضیحات محصول
 const ProductDescription = ({ product }: ProductDescription) => {
   const [showMore, setShowMore] = useState(true); // وضعیت باز یا بسته بودن متن
-
   return (
     <div className="w-full min-h-32 border rounded-xl pt-4 pb-2 px-2 ">
       <h3 className="font-bold text-md">توضیحات فروشنده</h3>
@@ -19,10 +18,10 @@ const ProductDescription = ({ product }: ProductDescription) => {
       {/* نمایش متن توضیحات با محدودیت ۴ خط یا کامل */}
       <p
         className={cn(
-          "text-caption line-clamp-4 mt-2", // محدود کردن به ۴ خط
+          "text-caption line-clamp-2 mt-2", // محدود کردن به ۴ خط
           !showMore && "line-clamp-none"     // اگر showMore = false باشد، تمام متن نمایش داده شود
         )}
-        dangerouslySetInnerHTML={{ __html: product?.description }} // نمایش HTML خام از توضیحات
+        dangerouslySetInnerHTML={{ __html: product?.brief }} // نمایش HTML خام از توضیحات
       ></p>
 
       {/* دکمه نمایش بیشتر / بستن */}

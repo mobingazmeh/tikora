@@ -28,6 +28,14 @@ import Loading from "./loading";
  */
 export async function generateMetadata(): Promise<Metadata> {
   const appConfig = await getCacheAppConfigReq();
+  console.log('dd',appConfig)
+  if (!appConfig || !appConfig.results || !appConfig.results.information_site) {
+    return {
+      title: "وب‌سایت من",
+      description: "توضیحاتی برای سایت",
+    };
+  }
+
   return {
     manifest: "/api/manifest",
     title: {

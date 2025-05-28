@@ -36,8 +36,8 @@ const MainFooter = ({ appConfig }: MainFooterProps) => {
               <div className="flex gap-x-2 items-center pl-2">
                 <span>شماره پشتیبانی: </span>
                 <div>
-                  {appConfig?.business_information?.phone_support.map(
-                    (item, index) => (
+                  {appConfig?.business_information?.phone_support?.split(",").map(
+                    (item:string, index:number) => (
                       <React.Fragment key={index}>
                         <span
                           key={item}
@@ -149,11 +149,11 @@ const MainFooter = ({ appConfig }: MainFooterProps) => {
                       <Icon icon="fa:telegram" className="size-8 text-caption" />
                     </Link>
                   )}
-                  {appConfig?.social.whatsApp && (
-                    <Link href={appConfig?.social.whatsApp}>
-                      <Icon icon="fa:whatsapp" className="size-8 text-caption" />
-                    </Link>
-                  )}
+                   {appConfig?.social.linkedIn && (
+      <Link href={appConfig.social.linkedIn}>
+        <Icon icon="fa:linkedin" className="size-8 text-caption" />
+      </Link>
+    )}
                 </div>
               </div>
             </div>

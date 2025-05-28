@@ -40,7 +40,7 @@ export interface AppConfigType {
       email_support: string;
       address: string;
       address_2: string;
-      phone_support: string[];
+      phone_support: string;
       video_about_us: string | null;
     };
     comments: {
@@ -77,6 +77,7 @@ export async function getAppConfigReq(){
     url: `/options`,
 
   })) as AppConfigType
+  
 }
 
 export const getCacheAppConfigReq = unstable_cache(getAppConfigReq,["app-config"],{

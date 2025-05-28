@@ -10,12 +10,12 @@ const nextConfig: NextConfig = {
   /* تنظیمات مربوط به تصاویر */
   images: {
     /* الگوهای مجاز برای تصاویر خارجی */
-    domains: ['localhost', 'best-cms.ir'],
+    domains: ['localhost', 'tikora.best-cms.ir'],
 
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'best-cms.ir',
+        hostname: 'tikora.best-cms.ir',
         port: '',
         pathname: '/storage/**', // برای https همه دامنه‌ها مجاز هستند
       },

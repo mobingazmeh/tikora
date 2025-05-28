@@ -1,7 +1,8 @@
+"use client"
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
 import useShoppingCartStore from "@/lib/store/useCartDetailsStore";
-import { CartItem } from "@/services/orders/useGetOrders";
+import { CartItem } from "@/services/cart/useGetCartDetails";
 
 interface AddToBasketButtonProps {
   product: {

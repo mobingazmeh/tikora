@@ -4,8 +4,8 @@ import { AxiosError } from "axios";
 import { QUERY_KEYS } from "@/constants/QueryKeys";
 import { SingleServiceResponseType } from "@/lib/types/CommonTypes";
 import axiosClient from "../axiosClient";
-import { HomeDataResponseType } from "../../lib/types/HomeServiceTypes";
 import { unstable_cache } from "next/cache";
+import { HomeDataResponseType } from "@/lib/types/HomeServiceTypes";
 ///  دریافتت اطلاعات صفحه اصلی
 export async function getHomeData() {
   return (await axiosClient({

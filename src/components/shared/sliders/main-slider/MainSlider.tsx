@@ -26,45 +26,46 @@ import "swiper/css/pagination";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface MainSliderProps {
-  data: HomeItemTypeGenerator<"sliders">;
+  data: SliderItemType[];
 }
 
 export default function MainSlider({ data }: MainSliderProps) {
-  const rawId = useId(); // شناسه خام تولید شده توسط useId
+  const rawId = useId();
   const uniqueId = rawId.replaceAll(":", ""); 
+  
   return (
     <div className="pb-4 pt-8 relative sm:px-0 px-4">
       <Swiper
         dir="rtl"
         autoHeight
         pagination={{
-          el: `#${uniqueId}-pagination`, // اتصال به عنصر سفارشی
+          el: `#${uniqueId}-pagination`,
           bulletActiveClass: "main-slider-active-bullet",
           bulletClass: "main-slider-bullet",
-          clickable: true, // قابلیت کلیک روی دکمه‌ها
+          clickable: true,
           renderBullet: (index, className) => {
             return `<span class="  ${className} "></span>`;
           },
         }}
         navigation={{
-          prevEl: `#${uniqueId}-prev`, // اتصال دکمه قبلی
-          nextEl: `#${uniqueId}-next`, // اتصال دکمه بعدی
+          prevEl: `#${uniqueId}-prev`,
+          nextEl: `#${uniqueId}-next`,
         }}
         modules={[Navigation, Pagination]}
         className="rounded-2xl !overflow-y-auto !h-fit  group "
       >
-        {data.data.map((item) => (
-          <SwiperSlide key={item?.id}>
-            <MainSliderItemWrapper item={item}>
+        {data.map((item: SliderItemType) => (
+          <SwiperSlide key={item.source}>
+            <div>
               <Image
                 className="rounded-2xl sm:h-[277px] "
                 width={1216}
-                src={item.image}
+                src={item.source}
                 height={277}
-                alt=""
+                alt={item.alt}
                 onError={e=>e.currentTarget.classList.add('!hidden')}
               />
-            </MainSliderItemWrapper>
+            </div>
           </SwiperSlide>
         ))}
 
