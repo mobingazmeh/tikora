@@ -1,7 +1,6 @@
 import { ShoppingCartState } from '@/services/cart/useGetCartDetails';
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-
+import { persist } from 'zustand/middleware';
 
 const useShoppingCartStore = create<ShoppingCartState>()(
   persist(
@@ -10,7 +9,18 @@ const useShoppingCartStore = create<ShoppingCartState>()(
       cartDetails: null,
       discountCode: null,
       severity: 'info',
+      clearPersistedCart: () => {
+        try {
+          localStorage.removeItem('shopping-cart-storage');
+          set({ cart: [], discountCode: null, cartDetails: null });
+          console.log("🧹 حافظه ذخیره شده سبد خرید پاک شد");
+        } catch (error) {
+          console.error("❌ خطا در پاک کردن حافظه سبد خرید:", error);
+        }
+      },
       addItemToCart: async (item) => {
+        console.log("📦 درخواست افزودن محصول به سبد خرید:", item);
+
         set((state) => {
           const existingItem = state.cart.find(
             (i) =>
@@ -20,6 +30,11 @@ const useShoppingCartStore = create<ShoppingCartState>()(
           );
 
           if (existingItem) {
+            console.log("📦 محصول در سبد موجود است. افزایش تعداد...", {
+              productId: item.product_id,
+              currentQuantity: existingItem.quantity,
+              newQuantity: existingItem.quantity + item.quantity
+            });
             return {
               cart: state.cart.map((i) =>
                 i === existingItem
@@ -28,11 +43,17 @@ const useShoppingCartStore = create<ShoppingCartState>()(
               ),
             };
           } else {
+            console.log("📦 افزودن محصول جدید به سبد خرید:", {
+              productId: item.product_id,
+              quantity: item.quantity
+            });
             return { cart: [...state.cart, item] };
           }
         });
       },
       removeItemFromCart: async (productId) => {
+        console.log("🗑️ درخواست حذف محصول از سبد خرید:", { productId });
+
         set((state) => ({
           cart: state.cart.filter((item) => item.product_id !== productId),
         }));
@@ -45,22 +66,32 @@ const useShoppingCartStore = create<ShoppingCartState>()(
         }));
       },
       clearCart: () => {
-        set({ cart: [], discountCode: null, cartDetails: null });
+        set({ 
+          cart: [], 
+          discountCode: null, 
+          cartDetails: null 
+        });
       },
       setDiscountCode: (code) => {
         set({ discountCode: code });
       },
       fetchCartDetails: async () => {
-        // Implementation will be added later
+        console.log("🔄 وضعیت فعلی سبد خرید:", {
+          totalItems: get().cart.length,
+          items: get().cart,
+          discountCode: get().discountCode
+        });
         set({ cartDetails: null });
       },
     }),
     {
       name: 'shopping-cart-storage',
-      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ 
+        cart: state.cart,
+        discountCode: state.discountCode 
+      }),
     }
   )
 );
 
 export default useShoppingCartStore;
-

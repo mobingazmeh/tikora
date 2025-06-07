@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -30,7 +33,7 @@ body {
   @apply cursor-pointer bg-caption rounded-full !transition-all !w-2 !h-2;
 }
 .main-slider-active-bullet {
-  @apply !bg-primary-500 !transition-all !opacity-100 !w-4 !h-2 !rounded-full;
+  @apply !bg-green !transition-all !opacity-100 !w-4 !h-2 !rounded-full;
 }
 
 .divide-box {

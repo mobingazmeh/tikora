@@ -12,6 +12,8 @@ export async function GET() {
   --color-secondary-400: 6, 106, 214; /* Hex: #066ad6 */
   --color-secondary-300: 0, 141, 235; /* Hex: #008deb */
   --color-secondary-100: 67, 191, 255; /* Hex: #43bfff */
+    --color-green: 0, 112, 74; /* Hex: #00704a */
+
 }
 
   `;

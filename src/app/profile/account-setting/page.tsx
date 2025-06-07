@@ -83,7 +83,7 @@ const AccountSettingPage = () => {
         <div className="w-full mt-4 text-left ">
           <EditProfileInfo>
             <Button
-              variant={"secondary"}
+              variant={"green"}
               size={"sm"}
               icon={<Icon icon="solar:pen-linear" />}
             >

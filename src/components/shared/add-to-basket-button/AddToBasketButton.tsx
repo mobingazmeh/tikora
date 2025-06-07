@@ -1,8 +1,9 @@
 "use client"
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React from "react";
+import React, { useMemo } from "react";
 import useShoppingCartStore from "@/lib/store/useCartDetailsStore";
 import { CartItem } from "@/services/cart/useGetCartDetails";
+import { toast } from "react-toastify";
 
 interface AddToBasketButtonProps {
   product: {
@@ -14,31 +15,71 @@ interface AddToBasketButtonProps {
 }
 
 const AddToBasketButton = ({ product }: AddToBasketButtonProps) => {
+  const cart = useShoppingCartStore((state) => state.cart);
   const addItemToCart = useShoppingCartStore((state) => state.addItemToCart);
+  const removeItemFromCart = useShoppingCartStore((state) => state.removeItemFromCart);
 
-  const handleAddToCart = async () => {
-    const cartItem: CartItem = {
-      product_id: product.id,
-      quantity: 1,
-      type: product.type,
-      ...(product.variety_id && { variety_id: product.variety_id }),
-      ...(product.variety_value_id && { variety_value_id: product.variety_value_id })
-    };
+  // بررسی وجود محصول در سبد خرید با useMemo
+  const isInCart = useMemo(() => {
+    return cart.some(
+      (item) =>
+        item.product_id === product.id &&
+        item.variety_id === product.variety_id &&
+        item.variety_value_id === product.variety_value_id
+    );
+  }, [cart, product.id, product.variety_id, product.variety_value_id]);
 
-    await addItemToCart(cartItem);
+  const handleCartAction = async () => {
+    try {
+      if (isInCart) {
+        await removeItemFromCart(product.id);
+        toast.success("محصول از سبد خرید حذف شد", {
+          position: "top-right",
+          rtl: true,
+          theme: "dark"
+        });
+      } else {
+        const cartItem: CartItem = {
+          product_id: product.id,
+          quantity: 1,
+          type: product.type,
+          ...(product.variety_id && { variety_id: product.variety_id }),
+          ...(product.variety_value_id && { variety_value_id: product.variety_value_id })
+        };
+
+        await addItemToCart(cartItem);
+        toast.success("محصول به سبد خرید اضافه شد", {
+          position: "top-right",
+          rtl: true,
+          theme: "dark"
+        });
+      }
+    } catch (error) {
+      toast.error("خطا در عملیات سبد خرید", {
+        position: "top-right",
+        rtl: true,
+        theme: "dark"
+      });
+    }
   };
 
   return (
-    <div className="w-full"> {/* یک div wrapper برای دکمه که عرض کامل صفحه را دارد */}
+    <div className="w-full">
       <button 
-        onClick={handleAddToCart}
-        className="w-full text-white text-base font-medium p-2 gap-x-2 rounded-lg bg-gradient-to-l from-secondary-500 to-secondary-300 flex items-center justify-center h-12"
+        onClick={handleCartAction}
+        className={`w-full text-base font-medium p-2 gap-x-2 rounded-lg flex items-center justify-center transition-all duration-300 h-12 ${
+          isInCart 
+            ? "bg-red-100 text-red-500 border border-red-500 hover:bg-red-500 hover:text-white"
+            : "bg-green text-white border border-green hover:text-green hover:bg-white"
+        }`}
       >
-        {/* دکمه‌ای که ویژگی‌های مختلفی دارد */}
         <span>
-          <Icon icon={"solar:cart-3-linear"} className="size-6" /> {/* آیکون سبد خرید از کتابخانه Iconify */}
+          <Icon 
+            icon={isInCart ? "solar:trash-bin-trash-bold" : "solar:cart-3-linear"} 
+            className="size-6" 
+          />
         </span>
-        <span>افزودن به سبد خرید</span> {/* متن دکمه */}
+        <span>{isInCart ? "حذف از سبد خرید" : "افزودن به سبد خرید"}</span>
       </button>
     </div>
   );

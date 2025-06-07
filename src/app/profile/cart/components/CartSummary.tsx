@@ -16,7 +16,7 @@ const CartSummary = ({
   onCheckout,
 }: CartSummaryProps) => {
   return (
-    <div className="bg-white rounded-lg shadow p-4">
+    <div className="bg-white rounded-lg shadow p-4 border border-green">
       <h2 className="text-lg font-bold mb-4">خلاصه سفارش</h2>
       <div className="space-y-2">
         <div className="flex justify-between">
@@ -34,7 +34,7 @@ const CartSummary = ({
           <span>{new Intl.NumberFormat("fa-IR").format(final_price)} تومان</span>
         </div>
       </div>
-      <Button className="w-full mt-4" onClick={onCheckout}>
+      <Button variant='green' className="w-full mt-4" onClick={onCheckout}>
         ادامه فرآیند خرید
       </Button>
     </div>

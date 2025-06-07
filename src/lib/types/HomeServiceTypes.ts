@@ -12,7 +12,8 @@ export type HomeItemType =
   | "special_markets"
   | "slider_image"
   | "slider_products"
-  | "banner";
+  | "banner"
+  | "list_categories"
 
 export interface SliderItemType {
   type: "image";
@@ -56,6 +57,7 @@ export type HomeItemDataTypeGenerator<T extends HomeItemType> =
 export type BaseHomeItemDataType = {
   id: number;
   title: string;
+  template_data?: string;
   component: HomeItemType;
   /**
    * Determines where to show the content.

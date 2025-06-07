@@ -17,7 +17,7 @@ export async function getProductDetailsReq(data: GetProductDetailsReqParams) {
   return (await axiosClient({
     method: "get",
     url: `/products/${data.productId}`,
-    data,
+   
   })) as SingleServiceResponseType<ProductDetailsResponseType>;
 }
 //کش سمت سرور

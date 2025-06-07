@@ -37,11 +37,11 @@ const ProfileMenu = () => {
         key: "profile",
       },
       {
-        label: "فروشنده شوید",
-        icon: "solar:monitor-smartphone-outline",
-        isSpecial: true,
-        href: "/profile/seller",
-        key: "seller",
+        label: "علاقه‌مندی‌ها",
+        icon: "solar:heart-linear",
+        isSpecial: false,
+        href: "/profile/favourites",
+        key: "favourites",
       },
       {
         label: "سبد خرید",
@@ -57,13 +57,7 @@ const ProfileMenu = () => {
         href: "/profile/orders",
         key: "orders",
       },
-      {
-        label: "علاقه‌مندی‌ها",
-        icon: "solar:heart-linear",
-        isSpecial: false,
-        href: "/profile/favourites",
-        key: "favourites",
-      },
+     
       {
         label: "آدرس‌ها",
         icon: "solar:map-point-linear",
@@ -124,12 +118,12 @@ const ProfileMenu = () => {
 
     return (
       <div
-        className={cn("w-60  pl-6 border-l", isMobile && "w-full pr-3 h-full")}
+        className={cn("w-60  pl-6 border-l ", isMobile && "w-full pr-3 h-full ")}
       >
         <ul className="w-full space-y-2">
           {profileItems.map((item) => {
             const isSpecial = item.isSpecial;
-            const isActive = path === item.key;
+            const isActive = pathname.startsWith(item.href);
 
             // رندر آیتم‌های ویژه (مثل دکمه فروشنده شوید)
             if (isSpecial) {
@@ -137,13 +131,12 @@ const ProfileMenu = () => {
                 <li key={item.key}>
                   <Link
                     href="/become-seller"
-                    className="flex items-center justify-between px-2 py-3 bg-gradient-to-br from-primary-500 to-primary-100 text-black transition-colors rounded-lg"
+                    className="flex items-center justify-between px-2 py-3 bg-gradient-to-br from-green to-primary-100 text-black transition-colors rounded-lg"
                   >
                     <div className="flex items-center gap-x-4">
                       <span>
                         <Icon icon={"clarity:store-line"} className="size-6" />
                       </span>
-                      <span className="text-sm  font-medium">فروشنده شوید</span>
                     </div>
                     <span className="text-sm  font-medium">
                       <Icon
@@ -163,7 +156,7 @@ const ProfileMenu = () => {
                     onClick={item.onClick}
                     className={cn(
                       isActive &&
-                        "bg-secondary-500 bg-opacity-[7%] text-secondary-500",
+                        "bg-green-500 bg-opacity-[7%] text-green-500",
                       "w-full flex items-center rounded-lg justify-between py-4 px-2"
                     )}
                   >
@@ -191,7 +184,7 @@ const ProfileMenu = () => {
                     href={item.href}
                     className={cn(
                       isActive &&
-                        "bg-secondary-500 bg-opacity-[7%] text-secondary-500",
+                        "bg-green bg-opacity-[7%] text-green",
                       "w-full flex items-center rounded-lg justify-between py-4 px-2"
                     )}
                   >

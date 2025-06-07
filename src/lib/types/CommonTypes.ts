@@ -7,13 +7,14 @@ export interface ProductItemType {
     inventory: number;
     is_discount: 0 | 1; // چون فقط 0 یا 1 است بهتر است به صورت union مشخص شود
     old_price: number;
-    sale_price: number;
+    price: number;
     sale_type: 'simple' | string; // اگر فقط 'simple' دارید دقیق‌تر می‌شود، در غیر این صورت string
     seo_title: string | null;
     sku: string;
     type_discount: 'percent' | 'price' | string; // اگر مقادیر مشخص است دقیق‌تر تعیین شود
     value_discount: number;
-    is_favourite?: boolean; // اختیاری بودن در این مدل
+    is_favourite?: boolean;
+    sale_price ?:number // اختیاری بودن در این مدل
 }
 
 // تایپ برند
@@ -91,6 +92,18 @@ export interface ProductsListResponseType {
 }
 
 // تایپ پاسخ جزئیات محصول
+export interface AttributeType {
+    key: string;
+    value: string;
+  }
+  
+  // تایپ گارانتی محصول
+  export interface WarrantyType {
+    logo?: string;
+    title: string;
+    duration: string;
+    description?: string;
+  }
 export interface ProductDetailsResponseType {
     id: number;
     title: string;
@@ -111,7 +124,7 @@ export interface ProductDetailsResponseType {
     is_register: 0 | 1;
     have_register: 0 | 1;
     keywords: string[];
-    warranty: string | null;
+    warranty: WarrantyType | null;
     weight: number | null;
     width: number | null;
     height: number | null;
@@ -124,6 +137,7 @@ export interface ProductDetailsResponseType {
     videos: VideoType[];
     similars: ProductItemType[];
     related: ProductItemType[];
+    
 }
 
 // تایپ پاسخ کلی سرویس
@@ -131,6 +145,7 @@ export interface SingleServiceResponseType<T> {
     success: boolean;
     status: number;
     result: T;
+    data:T
 }
 
 export interface PaginationType {

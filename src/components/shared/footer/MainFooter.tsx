@@ -150,10 +150,10 @@ const MainFooter = ({ appConfig }: MainFooterProps) => {
                     </Link>
                   )}
                    {appConfig?.social.linkedIn && (
-      <Link href={appConfig.social.linkedIn}>
-        <Icon icon="fa:linkedin" className="size-8 text-caption" />
-      </Link>
-    )}
+                     <Link href={appConfig?.social.linkedIn}>
+                      <Icon icon="fa:linkedin" className="size-8 text-caption" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -16,7 +16,7 @@ interface MainHeaderProps {
 const MainHeader = ({ appConfig }: MainHeaderProps) => {
   const { user } = useAuthStore();// وضعیت کاربر از استور (اگر وارد شده باشد)
   return (
-    <div className="w-full sm:block hidden  sticky top-0 z-50 bg-white min-h-[60px] border-b shadow-sm ">
+    <div className="w-full sm:block hidden  fixed top-0 z-50 bg-white min-h-[60px] border-b shadow-sm py-4">
       <div className="w-full container px-6 h-full flex items-center justify-between">
                {/* لوگوی اپلیکیشن که به صفحه اصلی لینک می‌دهد */}
         <h1 className="h-11">
@@ -50,7 +50,7 @@ const MainHeader = ({ appConfig }: MainHeaderProps) => {
             </li>
               {/* آیتم سبد خرید */}
             <li>
-              <Link href={"/#"} className="flex items-center gap-x-2">
+              <Link href={"/profile/cart"} className="flex items-center gap-x-2">
                 <span>
                   <Icon icon={"solar:cart-5-outline"} className="size-6" />
                 </span>
@@ -87,13 +87,7 @@ const MainHeader = ({ appConfig }: MainHeaderProps) => {
             </li>
           </ul>
         </nav>
-     {/* دکمه "بفروش" */}
-        <button className=" font-bold h-12 w-fit px-7 gap-1 py-2 rounded-main bg-secondary-500 text-white flex items-center justify-center">
-          <span>
-            <Icon className="size-6" icon={"si:add-fill"} />
-          </span>
-          <span>بفروش</span>
-        </button>
+  
       </div>
     </div>
   );

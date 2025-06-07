@@ -13,7 +13,7 @@ const ScrollToTopButton = () => {
     {/* دکمه بازگشت به بالا */}
       <Button
         onClick={ScrollToTop}
-        variant={"secondary-outline"}
+        variant={"green"}
         iconPosition="end"
         className="rounded-lg hover:scale-105 px-3"
         size={"lg"}

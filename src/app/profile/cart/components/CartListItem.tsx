@@ -5,15 +5,17 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Image from "next/image";
 
 interface CartItemProps {
-  id: string;
+  id: number;
   title: string;
   cover: string;
   variety_title?: string;
   price: number;
   sale_price: number;
   qty_basket: number;
-  onUpdateQuantity: (id: string, quantity: number) => void;
-  onRemove: (id: string) => void;
+  onUpdateQuantity: (id: number, quantity: number) => Promise<void>;
+  onRemove: (id: number) => Promise<void>;
+  isLoading: boolean;
+  loadingAction: 'quantity' | 'remove' | null;
 }
 
 const CartListItem = ({
@@ -26,11 +28,13 @@ const CartListItem = ({
   qty_basket,
   onUpdateQuantity,
   onRemove,
+  isLoading,
+  loadingAction,
 }: CartItemProps) => {
   return (
-    <div className="flex items-center gap-4 py-4 border-b last:border-0">
+    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-4 py-4 border-b last:border-0">
       {cover && (
-        <div className="relative w-20 h-20">
+        <div className="relative w-16 h-16 lg:w-20 lg:h-20">
           <Image
             src={cover}
             alt={title}
@@ -39,25 +43,33 @@ const CartListItem = ({
           />
         </div>
       )}
-      <div className="flex-1">
-        <h3 className="font-medium">{title}</h3>
+      <div className="flex-1 w-full lg:w-auto">
+        <h3 className="font-medium text-sm lg:text-base truncate">{title}</h3>
         {variety_title && (
-          <p className="text-sm text-gray-600">{variety_title}</p>
+          <p className="text-xs lg:text-sm text-gray-600 truncate">{variety_title}</p>
         )}
-        <div className="flex items-center gap-4 mt-2">
+        <div className="flex items-center justify-between lg:justify-start gap-4 mt-2">
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
               size="sm"
+              className="h-8 w-8 p-0 lg:h-9 lg:w-auto lg:px-3"
               onClick={() => onUpdateQuantity(id, Math.max(1, qty_basket - 1))}
+              disabled={isLoading && loadingAction === 'quantity'}
             >
               -
             </Button>
-            <span>{qty_basket}</span>
+            {isLoading && loadingAction === 'quantity' ? (
+              <Icon icon="svg-spinners:6-dots-scale" className="text-green-500 w-4 h-4 lg:w-5 lg:h-5" />
+            ) : (
+              <span className="w-6 text-center text-sm lg:text-base">{qty_basket}</span>
+            )}
             <Button
               variant="outline"
               size="sm"
+              className="h-8 w-8 p-0 lg:h-9 lg:w-auto lg:px-3"
               onClick={() => onUpdateQuantity(id, qty_basket + 1)}
+              disabled={isLoading && loadingAction === 'quantity'}
             >
               +
             </Button>
@@ -65,19 +77,24 @@ const CartListItem = ({
           <Button
             variant="ghost"
             size="sm"
-            className="text-red-500"
+            className="text-red-500 h-8 w-8 p-0 lg:h-9 lg:w-auto lg:px-3"
             onClick={() => onRemove(id)}
+            disabled={isLoading && loadingAction === 'remove'}
           >
-            <Icon icon="solar:trash-bin-trash-linear" className="w-5 h-5" />
+            {isLoading && loadingAction === 'remove' ? (
+              <Icon icon="svg-spinners:6-dots-scale" className="text-red-500 w-5 h-5 lg:w-5 lg:h-5" />
+            ) : (
+              <Icon icon="solar:trash-bin-trash-linear" className="w-4 h-5 lg:w-5 lg:h-5" />
+            )}
           </Button>
         </div>
       </div>
-      <div className="text-left">
-        <p className="font-medium">
+      <div className="text-left w-full lg:w-auto">
+        <p className="font-medium text-sm lg:text-base">
           {new Intl.NumberFormat("fa-IR").format(sale_price)} تومان
         </p>
         {price !== sale_price && (
-          <p className="text-sm text-gray-500 line-through">
+          <p className="text-xs lg:text-sm text-red-500 line-through">
             {new Intl.NumberFormat("fa-IR").format(price)} تومان
           </p>
         )}
@@ -86,4 +103,4 @@ const CartListItem = ({
   );
 };
 
-export default CartListItem; 
+export default CartListItem;

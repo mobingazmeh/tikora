@@ -31,26 +31,7 @@ export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderP
   if (width > 768) {
     return (
       <div className="relative rounded-xl pb-6 border bg-white">
-        <div className="w-full flex px-4 justify-between items-center h-20">
-          <h2 className="flex items-center w-fit gap-2 text-md">
-            {data.title}
-          </h2>
-          <Link href={{ pathname: "/products" }}>
-            <Button
-              animation
-              iconPosition="end"
-              icon={
-                <Icon
-                  icon={"fluent:chevron-left-12-filled"}
-                  className="size-6"
-                />
-              }
-              variant={"glass"}
-              className="border text-secondary-500 hover:border-secondary-500 hover:bg-secondary-100/10 px-3 gap-1"
-            >
-              <span className="text-xs">مشاهده همه</span>
-            </Button>
-          </Link>
+        <div className="w-full flex px-4 justify-between items-center ">
         </div>
 
         {/* اسلایدر محصولات */}
@@ -72,7 +53,7 @@ export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderP
             },
           }}
           modules={[Navigation, Pagination]}
-          className="border-y !overflow-y-auto !h-fit !px-4 group"
+          className=" !overflow-y-auto !h-fit !px-4 group"
         >
           {Array.isArray(data) ? data.map((item) => (
             <SwiperSlide key={item?.id}>
@@ -116,13 +97,13 @@ export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderP
 
       {/* لیست محصولات به صورت اسکرولی در موبایل */}
       <div className="relative mx-auto py-4 w-full flex gap-x-3 snap-x overflow-x-auto sm:overflow-x-visible scrollbar-hidden group border-y !overflow-y-auto !h-fit !px-4 group">
-        {data.data.map((item) => (
+        {Array.isArray(data) ? data.map((item) => (
           <div key={item?.id}>
             <div className="bg-white rounded-lg overflow-hidden w-full p-4">
               <ProductItem item={item} />
             </div>
           </div>
-        ))}
+        )):null}
       </div>
     </div>
   );

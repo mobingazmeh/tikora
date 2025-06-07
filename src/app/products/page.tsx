@@ -36,7 +36,7 @@ export async function generateMetadata({
 
 const page = ({ searchParams }: Props) => {
   return (
-    <div className="w-full max-w-container-lg h-auto mx-auto">
+    <div className="w-full max-w-container-lg h-auto mx-auto my-20">
       <div className="w-full  mx-auto sm:bg-white bg-natural">
         <div className="py-2     mt-4">
           <BreadCrumbCustom

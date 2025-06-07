@@ -1,12 +1,17 @@
 "use client";
 
 import FavouriteProductsList from "./components/FavouriteProductsList";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function FavouritesPage() {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium">لیست علاقه‌مندی‌ها</h2>
+    <div className="container mx-auto p-4">
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-gray-800">لیست علاقه‌مندی‌ها</h1>
+          </div>
+        </div>
       </div>
 
       <FavouriteProductsList />

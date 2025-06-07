@@ -206,7 +206,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
 
               {/* دکمه ثبت اطلاعات */}
               <Button
-                variant="primary"
+                variant="green"
                 type="submit"
                 isLoading={isPending}
                 disabled={isPending}

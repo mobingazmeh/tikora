@@ -23,14 +23,14 @@ const UserMenu = ({ children }: UserMenuProps) => {
   // لیست آیتم‌های منوی کاربری
   const items = [
     {
-      href: "/my-purchases",
+      href: "/profile/cart",
       icon: "solar:cart-5-outline",
       label: "خریدهای من",
     },
     {
-      href: "/my-ads",
-      icon: "fluent:megaphone-loud-24-regular",
-      label: "آگهی‌های من",
+      href: "/profile/favourites",
+      icon: "solar:heart-linear",
+      label: "علاقه مندی ها",
     },
     {
       href: "/messages",
@@ -73,27 +73,7 @@ const UserMenu = ({ children }: UserMenuProps) => {
 
           {/* بخش آیتم‌های منو */}
           <div>
-            {/* دکمه فروشنده شدن */}
-            <div className="p-4">
-              <Link
-                href="/become-seller"
-                className="flex items-center justify-between p-4 pr-2 bg-gradient-to-br from-primary-500 to-primary-100 text-black transition-colors rounded-lg"
-              >
-                <div className="flex items-center gap-x-4">
-                  <span>
-                    <Icon icon={"clarity:store-line"} className="size-6" />
-                  </span>
-                  <span className="text-sm font-medium">فروشنده شوید</span>
-                </div>
-                <span className="text-sm font-medium">
-                  <Icon
-                    icon={"solar:alt-arrow-left-linear"}
-                    className="size-6"
-                  />
-                </span>
-              </Link>
-            </div>
-
+         
             {/* لیست لینک‌های دیگر مثل خریدها، پیام‌ها و ... */}
             <div className="px-4">
               {items.map((item) => (

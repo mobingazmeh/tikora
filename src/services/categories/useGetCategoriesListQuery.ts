@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { unstable_cache } from "next/cache";
 
 import { QUERY_KEYS } from "@/constants/QueryKeys";
 import {
@@ -41,15 +42,29 @@ export interface GetCategoriesReqParams {
 
 // دریافت دسته‌بندی
 export async function getCategoriesListReq(data: GetCategoriesReqParams) {
-  return (await axiosClient({
+  
+  const response = await axiosClient({
     method: "get",
     url: `/categories`,
-    params: data, // تغییر data به params چون درخواست GET است
-  })) as SingleServiceResponseType<CategoryResponseType>;
+    params: data
+  }) as SingleServiceResponseType<CategoryResponseType>;
+
+  console.log("✅ Raw Response:", response);
+  console.log("✅ Categories count:", response.result);
+  
+  return response;
 }
 
+// کش کردن درخواست دسته‌بندی
+export const getCachedCategoriesListReq = unstable_cache(
+  getCategoriesListReq,
+  ["categories-list"],
+  {
+    revalidate: 60, // اعتبار کش ۶۰ ثانیه
+  }
+);
+
 export function useGetCategoriesListReqMutation() {
-  //   const { logout } = useAuthStore();
   return useMutation<
     SingleServiceResponseType<CategoryResponseType>,
     AxiosError,
@@ -60,13 +75,12 @@ export function useGetCategoriesListReqMutation() {
 }
 
 export function useGetCategoriesListQuery(params: GetCategoriesReqParams) {
-  //   const { logout } = useAuthStore();
   return useQuery<
     SingleServiceResponseType<CategoryResponseType>,
     AxiosError,
     SingleServiceResponseType<CategoryResponseType>
   >({
-    queryFn: () => getCategoriesListReq(params),
+    queryFn: () => getCategoriesListReq(params), // استفاده از نسخه کش شده
     queryKey: [QUERY_KEYS.categories, params],
   });
 }

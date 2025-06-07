@@ -35,7 +35,12 @@ const config: Config = {
         danger: 'rgba(215, 46, 46 , <alpha-value>)',
         /* رنگ‌های طبیعی */
         natural: '#f7f7f7',
-        "natural-100":"#f0f0f1"
+        "natural-100":"#f0f0f1",
+        'green': {
+          DEFAULT: '#00704a',
+          'light': '#008c5c',
+          'dark': '#005a3d'
+        }
       },
       /* تنظیمات گوشه‌های گرد */
       borderRadius: {

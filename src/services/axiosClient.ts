@@ -7,7 +7,7 @@ export const BASE_URL = process.env.NEXT_PUBLIC_URL;
 interface axiosClientType extends AxiosInstance {
   setAuthToken: (token: string) => void;
 }
-
+const publicApis = ['/otp', '/login', '/login_register'];
 const axiosClient: axiosClientType = axios.create({
   baseURL: BASE_URL,
 }) as axiosClientType;
@@ -24,6 +24,9 @@ axiosClient.interceptors.request.use(
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   (config) => {
+    if (publicApis.some(api => config.url?.includes(api))) {
+      return config;
+    }
     const token = Cookies.get("token");
     console.log("📌 توکن در زمان ارسال درخواست:", token); // لاگ توکن
     return {

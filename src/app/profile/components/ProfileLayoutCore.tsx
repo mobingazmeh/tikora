@@ -30,9 +30,9 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   // حالت دسکتاپ - نمایش منو و محتوا کنار هم
   else {
     return (
-      <div className="border w-full rounded-lg px-6 pb-5 max-w-5xl mx-auto mt-10">
+      <div className="border w-full rounded-lg px-6 pb-5 max-w-5xl mx-auto mt-10 py-10 ">
         {/* عنوان صفحه */}
-        <div className="py-5">
+        <div className="py-5 ">
           <h1 className="text-lg ">حساب کاربری من </h1>
         </div>
         {/* محتوای اصلی شامل منو و محتوا */}

@@ -37,15 +37,36 @@ function ProductRawImageSlider({
   activeIndex,
   setActiveIndex,
 }: ProductRawImageSliderProps) {
-  const rawId = useId(); // شناسه خام تولید شده توسط useId
+  const rawId = useId();
   const uniqueId = rawId.replaceAll(":", "");
-  // وضعیت تصویر فعال
-  const images = [{ id: "cover", path: product.cover }, ...product.images.map((img, index) => ({ id: `img-${index}`, path: img.source }))];
-  const swiperRef = useRef<any>(null); // استفاده از useRef برای گرفتن دسترسی به Swiper
+  
+  // ساخت آرایه تصاویر با چک کردن مقادیر
+  const images = product ? [
+    { id: "cover", path: product.cover || '', description: 'تصویر شاخص' },
+    ...(product.images || []).map((img, index) => ({ 
+      id: `img-${index}`, 
+      path: img?.source || '',
+      description: img?.description || ''
+    }))
+  ].filter(img => img.path) : [];
+
+  const swiperRef = useRef<any>(null);
 
   useEffect(() => {
-    swiperRef.current.swiper.slideTo(activeIndex); // اسلاید به ایندکس جدید
+    if (swiperRef.current?.swiper && typeof activeIndex === 'number') {
+      swiperRef.current.swiper.slideTo(activeIndex);
+    }
   }, [activeIndex]);
+
+  // اگر تصویری نباشه، یک پیام نمایش بده
+  if (!product || images.length === 0) {
+    return (
+      <div className="w-full h-[460px] bg-gray-100 rounded-2xl flex items-center justify-center">
+        <p className="text-gray-500">تصویری موجود نیست</p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative sm:px-0 px-4">
       <Swiper
@@ -53,30 +74,30 @@ function ProductRawImageSlider({
         autoHeight
         ref={swiperRef}
         pagination={{
-          el: `#${uniqueId}-pagination`, // اتصال به عنصر سفارشی
+          el: `#${uniqueId}-pagination`,
           bulletActiveClass: "main-slider-active-bullet",
-          bulletClass: "main-slider-bullet",
-          clickable: true, // قابلیت کلیک روی دکمه‌ها
+          bulletClass: "main-slider-bullet ",
+          clickable: true,
           renderBullet: (index, className) => {
             return `<span class=" ${className} "></span>`;
           },
         }}
         navigation={{
-          prevEl: `#${uniqueId}-prev`, // اتصال دکمه قبلی
-          nextEl: `#${uniqueId}-next`, // اتصال دکمه بعدی
+          prevEl: `#${uniqueId}-prev`,
+          nextEl: `#${uniqueId}-next`,
         }}
-        onSlideChange={(swiper) => setActiveIndex?.(swiper.activeIndex)} // بروزرسانی activeIndex
+        onSlideChange={(swiper) => setActiveIndex?.(swiper.activeIndex)}
         modules={[Navigation, Pagination]}
-        className="rounded-2xl !overflow-y-auto !h-fit  group"
+        className="rounded-2xl !overflow-y-auto !h-fit group"
       >
         {images.map((item) => (
           <SwiperSlide key={item?.id}>
             <Image
-              className="rounded-2xl w-[460px] h-[460px]"
+              className="rounded-2xl w-[460px] h-[460px] object-cover"
               width={460}
               src={item.path}
               height={460}
-              alt=""
+              alt={item.description || ''}
             />
           </SwiperSlide>
         ))}
@@ -97,7 +118,7 @@ function ProductRawImageSlider({
       </Swiper>
       <div
         id={`${uniqueId}-pagination`}
-        className="w-full mt-4 flex items-center justify-center gap-x-2"
+        className="w-full mt-4  flex items-center justify-center gap-x-2"
       ></div>
     </div>
   );
@@ -106,11 +127,34 @@ function ProductRawImageSlider({
 export default function ProductImageSlider({
   product,
 }: ProductImageSliderProps) {
-  const images = [{ id: "cover", path: product.cover }, ...product.images.map((img, index) => ({ id: `img-${index}`, path: img.source }))];
+  // ساخت آرایه تصاویر با چک کردن مقادیر
+  const images = product ? [
+    { id: "cover", path: product.cover || '', description: 'تصویر شاخص' },
+    ...(product.images || []).map((img, index) => ({ 
+      id: `img-${index}`, 
+      path: img?.source || '',
+      description: img?.description || ''
+    }))
+  ].filter(img => img.path) : [];
+
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // اگر تصویری نباشه، یک پیام نمایش بده
+  if (!product || images.length === 0) {
+    return (
+      <div className="w-full h-[460px] bg-gray-100 rounded-2xl flex items-center justify-center">
+        <p className="text-gray-500">تصویری موجود نیست</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full relative">
-      <ProductRawImageSlider product={product} />
+      <ProductRawImageSlider 
+        product={product} 
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      />
       <Dialog>
         <DialogTrigger asChild>
           <span className="block bg-caption cursor-pointer text-white p-2 rounded-full z-50 absolute bottom-10 left-5">
@@ -131,25 +175,24 @@ export default function ProductImageSlider({
                 product={product}
               />
             </div>
-            <div className="sm:col-span-2 col-span-full grid grid-cols-4 sm:mt-0 mt-6 sm:grid-cols-3 gap-x-2   items-start h-fit">
+            <div className="sm:col-span-2 col-span-full grid grid-cols-4 sm:mt-0 mt-6 sm:grid-cols-3 gap-x-2 items-start h-fit">
               {images.map((image, index) => (
                 <div
                   className="flex flex-col items-center justify-center"
                   key={image.id}
-                  onClick={() => setActiveIndex(index)} // کلیک روی تصویر کوچک
+                  onClick={() => setActiveIndex(index)}
                 >
                   <Image
-                    alt=""
+                    alt={image.description || ''}
                     src={image.path}
                     width={80}
                     height={80}
-                    className="w-20 h-20"
+                    className="w-20 h-20 object-cover rounded-lg"
                   />
-                  {/* اگر تصویر در اسلایدر فعال باشد، دایره فعال نمایش داده می‌شود */}
                   <span
                     className={`block mx-auto rounded-full w-15 border-2 ${
                       index === activeIndex
-                        ? "border-primary-500"
+                        ?  "border-green"
                         : "border-transparent"
                     }`}
                   ></span>

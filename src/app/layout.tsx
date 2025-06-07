@@ -29,23 +29,16 @@ import Loading from "./loading";
 export async function generateMetadata(): Promise<Metadata> {
   const appConfig = await getCacheAppConfigReq();
   console.log('dd',appConfig)
-  if (!appConfig || !appConfig.results || !appConfig.results.information_site) {
-    return {
-      title: "وب‌سایت من",
-      description: "توضیحاتی برای سایت",
-    };
-  }
-
   return {
     manifest: "/api/manifest",
     title: {
-      template: appConfig.results.information_site.sitename + " | %s",
-      default: appConfig.results.information_site.sitename,
+      template: appConfig?.results?.information_site.sitename + " | %s",
+      default: appConfig?.results.information_site.sitename,
     },
-    description: appConfig.results.information_site.short_description,
-    icons: [appConfig.results.information_site.icon_logo],
+    description: appConfig?.results.information_site.short_description,
+    icons: [appConfig?.results.information_site.icon_logo],
     openGraph: {
-      images: [appConfig.results.information_site.logo],
+      images: [appConfig?.results.information_site.logo],
     },
   };
 }

@@ -34,7 +34,7 @@ export default function MainSlider({ data }: MainSliderProps) {
   const uniqueId = rawId.replaceAll(":", ""); 
   
   return (
-    <div className="pb-4 pt-8 relative sm:px-0 px-4">
+    <div className=" pb-4 pt-4 sm:pt-20 relative sm:px-0 px-4">
       <Swiper
         dir="rtl"
         autoHeight
@@ -58,7 +58,7 @@ export default function MainSlider({ data }: MainSliderProps) {
           <SwiperSlide key={item.source}>
             <div>
               <Image
-                className="rounded-2xl sm:h-[277px] "
+                className="rounded-xl h-[250px] sm:h-[450px]  "
                 width={1216}
                 src={item.source}
                 height={277}
@@ -96,7 +96,7 @@ interface MainSliderItemWrapperProps {
   children: ReactNode;
 }
 
-const MainSliderItemWrapper = ({
+{/*const MainSliderItemWrapper = ({
   children,
   item,
 }: MainSliderItemWrapperProps) => {
@@ -140,4 +140,4 @@ const MainSliderItemWrapper = ({
         </a>
       );
   }
-};
+}; */}
