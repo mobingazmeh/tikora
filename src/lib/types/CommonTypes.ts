@@ -89,6 +89,12 @@ export interface ProductsListResponseType {
         id: number;
         name: string;
     };
+    paginate: {
+        current_page: number;
+        per_page: number;
+        total: number;
+        last_page: number;
+    };
 }
 
 // تایپ پاسخ جزئیات محصول
@@ -146,6 +152,12 @@ export interface SingleServiceResponseType<T> {
     status: number;
     result: T;
     data:T
+    paginate: {
+        current_page: number;
+        per_page: number;
+        total: number;
+        last_page: number;
+    };
 }
 
 export interface PaginationType {

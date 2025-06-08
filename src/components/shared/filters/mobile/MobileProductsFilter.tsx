@@ -35,7 +35,7 @@ const MobileProductsFilter = () => {
           onClick={deleteFilters}
           variant={"glass"}
           size={"sm"}
-          className="text-xs !p-0 text-secondary-500 gap-x-1 !pr-2 border-r "
+          className="text-xs !p-0 text-green gap-x-1 !pr-2 border-r "
         >
           حذف فیلتر ها
         </Button>
@@ -62,7 +62,7 @@ export const ProductFilterModal = () => {
       <DialogTrigger asChild>
         <Button
           onClick={() => setIsOpen(true)}
-          variant={isHaveFilter ? "secondary-outline" : "outline"}
+          variant={isHaveFilter ? "green-outline" : "outline"}
           className="rounded-full "
           icon={<Icon icon={"mage:filter-fill"} />}
           size={"sm"}
@@ -86,10 +86,10 @@ export const ProductFilterModal = () => {
           </DialogTitle>
           <Button
             onClick={deleteFilters}
-            variant={"secondary-outline"}
+            variant={"green-outline"}
             size={"sm"}
             icon={<Icon icon={"solar:trash-bin-2-outline"} />}
-            className="w-fit text-xs text-secondary-500 py-2 h-fit !m-0  "
+            className="w-fit text-xs text-green py-2 h-fit !m-0  "
           >
             حذف فیلتر ها
           </Button>
@@ -99,7 +99,7 @@ export const ProductFilterModal = () => {
 
         <DialogFooter className="sm:justify-start mt-auto">
           <DialogClose asChild>
-            <Button type="button" variant="primary">
+            <Button type="button" variant="green">
               تایید
             </Button>
           </DialogClose>

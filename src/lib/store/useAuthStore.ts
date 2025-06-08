@@ -1,3 +1,4 @@
+"use client"
 import axiosClient from "@/services/axiosClient";
 //import { CityItemType } from "@/services/locations/useGetCities";
 //import { CountryItemType } from "@/services/locations/useGetCountries";

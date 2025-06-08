@@ -141,12 +141,14 @@ const CartPage = () => {
           </div>
           {/* خلاصه سفارش */}
           {factor && (
-            <CartSummary
+           <div className="pb-20 md:pb-0">
+             <CartSummary
               total_price={factor.total_price_items_real}
               discount_amount={factor.total_discount_amount}
               final_price={factor.payable_price}
               onCheckout={handleCheckout}
             />
+           </div>
           )}
         </div>
       )}

@@ -113,17 +113,17 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
       </DialogTrigger>
       <DialogContent
         dir="rtl"
-        className="sm:max-w-4xl sm:h-fit h-screen   block  w-full !rounded-lg"
+        className="sm:max-w-4xl w-[95%] max-h-[90vh] overflow-y-auto !rounded-lg"
       >
         <DialogHeader>
           <DialogTitle className="!text-right font-medium text-md h-8 block">
             اطلاعات کاربری
           </DialogTitle>
         </DialogHeader>
-        <div className="w-full ">
+        <div className="w-full">
           <Form {...form}>
             <form
-              className="grid sm:grid-cols-2 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
               onSubmit={form.handleSubmit(onSubmit)}
             >
               {/* فیلد نام */}
@@ -131,7 +131,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="first_name"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>نام</Label>
                     <Input {...field} />
                     <FormMessage />
@@ -144,7 +144,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="last_name"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>نام خانوادگی</Label>
                     <Input {...field} />
                     <FormMessage />
@@ -157,7 +157,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>شماره موبایل</Label>
                     <Input {...field} />
                     <FormMessage />
@@ -170,7 +170,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="national_code"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>کد ملی</Label>
                     <Input {...field} />
                     <FormMessage />
@@ -183,7 +183,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>ایمیل</Label>
                     <Input {...field} value={field.value || ''} />
                     <FormMessage />
@@ -196,7 +196,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 control={form.control}
                 name="username"
                 render={({ field }) => (
-                  <FormItem className="mt-4">
+                  <FormItem className="mt-2 sm:mt-4">
                     <Label>نام کاربری</Label>
                     <Input {...field} />
                     <FormMessage />
@@ -210,7 +210,7 @@ const EditProfileInfo = ({ children }: { children: React.ReactNode }) => {
                 type="submit"
                 isLoading={isPending}
                 disabled={isPending}
-                className="col-span-2"
+                className="col-span-1 sm:col-span-2 mt-2 sm:mt-4"
               >
                 تایید و ثبت
               </Button>

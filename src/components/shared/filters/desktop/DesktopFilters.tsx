@@ -38,7 +38,7 @@ const DesktopFilters = () => {
           onClick={deleteFilters}
           variant={"glass"}
           size={"sm"}
-          className="text-xs !p-0 text-secondary-500"
+          className="text-xs !p-0 text-green"
         >
           حذف فیلتر ها
         </Button>
@@ -49,11 +49,11 @@ const DesktopFilters = () => {
         {/* فیلتر دسته‌بندی */}
         <AccordionItem value="item-1">
           <AccordionTrigger
-            className={cn(hasCategoryFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasCategoryFilter && "!text-extrabold text-green")}
           >
             <span className="block  relative">
               {hasCategoryFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
               <span>دسته بندی</span>
             </span>
@@ -66,11 +66,11 @@ const DesktopFilters = () => {
         {/* فیلتر برندها */}
         <AccordionItem value="item-2">
           <AccordionTrigger
-            className={cn(hasBrandFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasBrandFilter && "!text-extrabold text-green")}
           >
             <span className="block relative">
               {hasBrandFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
               <span>برند ها</span>
             </span>
@@ -83,13 +83,13 @@ const DesktopFilters = () => {
         {/* فیلتر قیمت */}
         <AccordionItem value="item-3">
           <AccordionTrigger
-            className={cn(hasPriceFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasPriceFilter && "!text-extrabold text-green")}
           >
             <span className="block  relative">
               {hasPriceFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
-              <span>قیمت</span>
+              <span >قیمت</span>
             </span>
           </AccordionTrigger>
           <AccordionContent>
@@ -112,6 +112,7 @@ const DesktopFilters = () => {
                   deleteState(["exist_products"]);
                 }
               }}
+
             />
           </span>
         </div>

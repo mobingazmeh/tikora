@@ -29,8 +29,8 @@ const buttonVariants = cva(
           "border border-neutral-200 bg-white hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
 
         // حالت outline سفارشی ثانویه
-        "secondary-outline":
-          "border border-secondary-500 bg-white hover:bg-secondary-500/5 text-secondary-500",
+        "green-outline":
+          "border border-green bg-white hover:bg-green-500/5 text-green",
 
         green:
           "bg-green text-white hover:bg-green-700 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/80",

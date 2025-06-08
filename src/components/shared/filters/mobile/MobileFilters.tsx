@@ -27,16 +27,16 @@ const MobileFilters = () => {
   return (
     <div>
       {/* کامپوننت آکورديون برای فیلترهای مختلف */}
-      <Accordion type="multiple" className="w-full">
+      <Accordion type="multiple" className="w-full p-1">
         {/* فیلتر دسته‌بندی */}
         <AccordionItem value="item-1">
           <AccordionTrigger
             // استایل خاص برای فیلترهای فعال
-            className={cn(hasCategoryFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasCategoryFilter && "!text-extrabold text-green")}
           >
             <span className="block relative">
               {hasCategoryFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
               <span>دسته بندی</span>
             </span>
@@ -51,11 +51,11 @@ const MobileFilters = () => {
         <AccordionItem value="item-2">
           <AccordionTrigger
             // استایل خاص برای فیلترهای فعال
-            className={cn(hasBrandFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasBrandFilter && "!text-extrabold text-green")}
           >
             <span className="block relative">
               {hasBrandFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
               <span> برند ها </span>
             </span>
@@ -70,11 +70,11 @@ const MobileFilters = () => {
         <AccordionItem value="item-3">
           <AccordionTrigger
             // استایل خاص برای فیلترهای فعال
-            className={cn(hasPriceFilter && "!text-extrabold text-secondary-500")}
+            className={cn(hasPriceFilter && "!text-extrabold text-green")}
           >
             <span className="block relative">
               {hasPriceFilter && (
-                <span className="w-2 h-2 absolute -left-6 block bg-secondary-500 rounded-full"></span>
+                <span className="w-2 h-2 absolute -left-6 block bg-green rounded-full"></span>
               )}
               <span> قیمت </span>
             </span>

@@ -2,42 +2,39 @@
 import useQueryManager from "@/lib/utils/useQueryManager";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-// تعریف نوع داده‌هایی که به کامپوننت Pagination ارسال می‌شود
 interface PaginationProps {
-  total: number; // تعداد کل آیتم‌ها
-  currentPage: number; // شماره صفحه فعلی
-  perPage: number; // تعداد آیتم‌ها در هر صفحه
+  total: number;
+  currentPage: number;
+  perPage: number;
+  last_page: number;
 }
 
-const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
-  // محاسبه تعداد صفحات کل بر اساس تعداد کل آیتم‌ها و تعداد آیتم‌ها در هر صفحه
-  const pageCount = Math.ceil(total / perPage);
-  
+const Pagination = ({ currentPage, perPage, total, last_page }: PaginationProps) => {
   // استفاده از hook `useQueryManager` برای به‌روزرسانی صفحه فعلی
   const { setState } = useQueryManager();
 
-  // تابعی برای محاسبه صفحات قابل مشاهده (نشان دادن اعداد صفحات با توجه به موقعیت صفحه فعلی)
+  // تابعی برای محاسبه صفحات قابل مشاهده
   const getVisiblePages = () => {
     // اگر تعداد صفحات کمتر یا مساوی ۷ باشد، تمامی صفحات نمایش داده می‌شود
-    if (pageCount <= 7) {
-      return Array.from({ length: pageCount }, (_, i) => i + 1);
+    if (last_page <= 7) {
+      return Array.from({ length: last_page }, (_, i) => i + 1);
     }
 
     // اگر صفحه فعلی کمتر یا مساوی ۳ باشد، صفحات ۱ تا ۴ و صفحات آخر نشان داده می‌شوند
     if (currentPage <= 3) {
-      return [1, 2, 3, 4, "...", pageCount - 1, pageCount];
+      return [1, 2, 3, 4, "...", last_page - 1, last_page];
     }
 
     // اگر صفحه فعلی نزدیک به آخرین صفحه‌ها باشد، صفحات اول و آخر و چند صفحه میانه نمایش داده می‌شود
-    if (currentPage >= pageCount - 2) {
+    if (currentPage >= last_page - 2) {
       return [
         1,
         2,
         "...",
-        pageCount - 3,
-        pageCount - 2,
-        pageCount - 1,
-        pageCount,
+        last_page - 3,
+        last_page - 2,
+        last_page - 1,
+        last_page,
       ];
     }
 
@@ -50,8 +47,8 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
       currentPage,
       currentPage + 1,
       "...",
-      pageCount - 1,
-      pageCount,
+      last_page - 1,
+      last_page,
     ];
   };
 
@@ -61,8 +58,8 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
   // تابعی برای تغییر صفحه با استفاده از `setState` از `useQueryManager`
   const goToPage = (page: number) => {
     setState({
-      page: page, // تغییر صفحه جاری
-      per_page: perPage // ← این رو اضافه کن
+      page: page,
+      per_page: perPage
     });
   };
 
@@ -71,13 +68,12 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
       aria-label="Page navigation"
       className="w-full flex items-center justify-center mt-8"
     >
-      {/* لیست دکمه‌ها برای صفحه‌بندی */}
       <ul className="flex flex-row-reverse items-center space-x-1 h-10 text-base">
         {/* دکمه صفحه قبلی */}
         <li>
           <button
-            onClick={() => goToPage(currentPage - 1)} // رفتن به صفحه قبلی
-            disabled={currentPage === 1} // غیرفعال کردن دکمه اگر در صفحه اول باشیم
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
             className={`flex items-center justify-center px-4 h-10 leading-tight border rounded-l-lg hover:enabled:bg-gray-100 hover:enabled:text-gray-700 ${
               currentPage === 1
                 ? "text-gray-300 bg-gray-200 border-gray-300 cursor-not-allowed"
@@ -86,7 +82,7 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
           >
             <span className="sr-only">Previous</span>
             <Icon
-              icon={"solar:alt-arrow-left-linear"} // آیکون صفحه قبلی
+              icon={"solar:alt-arrow-left-linear"}
               className="[&>path]:!stroke-[4]"
             />
           </button>
@@ -97,17 +93,16 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
           <li key={index}>
             {typeof page === "number" ? (
               <button
-                onClick={() => goToPage(page)} // رفتن به صفحه مشخص شده
+                onClick={() => goToPage(page)}
                 className={`flex items-center justify-center px-4 h-10 leading-tight border ${
                   page === currentPage
-                    ? "text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700"
-                    : "text-gray-500 bg-white border-gray-300  hover:bg-gray-100 hover:text-gray-700"
+                    ? "text-green bg-green-50 border-green hover:bg-green-100 hover:text-green-700"
+                    : "text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700"
                 }`}
               >
-                {page} {/* نمایش شماره صفحه */}
+                {page}
               </button>
             ) : (
-              // در صورتی که صفحه "..." باشد، فقط آن را نمایش می‌دهیم
               <span className="px-2 text-gray-500">{page}</span>
             )}
           </li>
@@ -116,17 +111,17 @@ const Pagination = ({ currentPage, perPage, total }: PaginationProps) => {
         {/* دکمه صفحه بعدی */}
         <li>
           <button
-            onClick={() => goToPage(currentPage + 1)} // رفتن به صفحه بعدی
-            disabled={currentPage === pageCount} // غیرفعال کردن دکمه اگر در صفحه آخر باشیم
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === last_page}
             className={`flex items-center justify-center px-4 h-10 leading-tight border rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ${
-              currentPage === pageCount
+              currentPage === last_page
                 ? "text-gray-300 bg-gray-200 border-gray-300 cursor-not-allowed"
                 : "text-gray-500 bg-white border-gray-300"
             }`}
           >
             <span className="sr-only">Next</span>
             <Icon
-              icon={"solar:alt-arrow-right-linear"} // آیکون صفحه بعدی
+              icon={"solar:alt-arrow-right-linear"}
               className="[&>path]:!stroke-[4]"
             />
           </button>

@@ -26,7 +26,7 @@ const MobileSort = () => {
       {/* دکمه برای باز کردن کشو */}
       <DrawerTrigger asChild>
         <Button
-          variant={ActiveItem ? "secondary-outline" : "outline"}
+          variant={ActiveItem ? "green-outline" : "outline"}
           className="rounded-full"
           icon={<Icon icon={"bi:sort-down"} />}
           size={"sm"}
@@ -42,7 +42,7 @@ const MobileSort = () => {
 
       {/* محتوای کشو که شامل لیست گزینه‌های مرتب‌سازی است */}
       <DrawerContent>
-        <div className="bg-white px-4">
+        <div className="bg-white p-9">
           <h2 className="w-full border-b py-2 ">مرتب سازی بر اساس</h2>
 
           <div className="w-full">

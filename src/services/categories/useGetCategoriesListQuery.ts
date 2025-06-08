@@ -1,3 +1,5 @@
+"use client";
+
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { unstable_cache } from "next/cache";
@@ -42,17 +44,21 @@ export interface GetCategoriesReqParams {
 
 // دریافت دسته‌بندی
 export async function getCategoriesListReq(data: GetCategoriesReqParams) {
-  
-  const response = await axiosClient({
-    method: "get",
-    url: `/categories`,
-    params: data
-  }) as SingleServiceResponseType<CategoryResponseType>;
+  try {
+    const response = await axiosClient({
+      method: "get",
+      url: `/categories`,
+      params: data
+    }) as SingleServiceResponseType<CategoryResponseType>;
 
-  console.log("✅ Raw Response:", response);
-  console.log("✅ Categories count:", response.result);
-  
-  return response;
+    console.log("✅ Raw Response:", response);
+    console.log("✅ Categories count:", response.result);
+    
+    return response;
+  } catch (error) {
+    console.error("❌ Error fetching categories:", error);
+    throw error;
+  }
 }
 
 // کش کردن درخواست دسته‌بندی
@@ -74,13 +80,12 @@ export function useGetCategoriesListReqMutation() {
   });
 }
 
-export function useGetCategoriesListQuery(params: GetCategoriesReqParams) {
-  return useQuery<
-    SingleServiceResponseType<CategoryResponseType>,
-    AxiosError,
-    SingleServiceResponseType<CategoryResponseType>
-  >({
-    queryFn: () => getCategoriesListReq(params), // استفاده از نسخه کش شده
+export function useGetCategoriesListQuery(params: GetCategoriesReqParams = {}) {
+  return useQuery({
     queryKey: [QUERY_KEYS.categories, params],
+    queryFn: () => getCategoriesListReq(params),
+    enabled: true, // همیشه فعال باشد
+    retry: 3, // در صورت خطا 3 بار تلاش کند
+    staleTime: 1000 * 60, // داده‌ها برای 1 دقیقه تازه در نظر گرفته شوند
   });
 }

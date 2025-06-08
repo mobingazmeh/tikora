@@ -32,7 +32,7 @@ const DesktopSelectedFilters = () => {
                     // حذف فیلتر قیمت
                     deleteState(["price_start", "price_end"]);
                   }}
-                  className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-secondary-500 bg-secondary-500/5 text-secondary-500"
+                  className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-green bg-green-500/5 text-green"
                 >
                   <span className="ml-1 ">
                     <Icon
@@ -68,7 +68,7 @@ const DesktopSelectedFilters = () => {
                   // حذف فیلتر مرتب‌سازی
                   deleteState(["sort_order", "sort_by"]);
                 }}
-                className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-secondary-500 bg-secondary-500/5 text-secondary-500"
+                className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-green bg-green-500/5 text-green"
               >
                 <span className="ml-1 ">
                   <Icon
@@ -95,7 +95,7 @@ const DesktopSelectedFilters = () => {
                   // حذف فیلتر خاص
                   deleteState([filter]);
                 }}
-                className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-secondary-500 bg-secondary-500/5 text-secondary-500"
+                className=" text-xs rounded-full flex items-center justify-center px-3 py-2 border border-green bg-green-500/5 text-green"
               >
                 <span className="ml-1 ">
                   <Icon
@@ -121,7 +121,7 @@ const DesktopSelectedFilters = () => {
         <>
           <span className="block w-px h-8 border"></span>
           <button
-            className="px-2 text-secondary-500"
+            className="px-2 text-green"
             onClick={() => {
               // ریست کردن تمام فیلترها
               resetStates();

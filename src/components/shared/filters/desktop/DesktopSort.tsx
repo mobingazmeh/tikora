@@ -60,7 +60,7 @@ const DesktopSort = () => {
             key={item.id}
             className={cn(
               "w-fit px-2 text-xs font-medium", // کلاس‌های استایل
-              isActive && "text-secondary-500 font-semibold" // تغییرات استایل در صورت فعال بودن
+              isActive && "text-green font-semibold" // تغییرات استایل در صورت فعال بودن
             )}
             onClick={() => {
               // تغییر وضعیت مرتب‌سازی

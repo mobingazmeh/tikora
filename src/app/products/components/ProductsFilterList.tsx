@@ -34,9 +34,8 @@ const ProductsFilterList = async ({
       : null,
     sort: filter?.sort_by ? `${filter.sort_order},${filter.sort_by}` as any : undefined
   });
-
   return (
-    <div className="      mb-8">
+    <div className="    p-1  mb-8">
       {/*Market internal Search input */}
 
       <div className="w-full flex mt-4 gap-x-4  items-start">
@@ -75,11 +74,13 @@ const ProductsFilterList = async ({
       </div>
 
       {response.result.products?.length > 0 && (
-        <div className="mt-4">
+        <div className="my-6">
           <PaginationCom
             currentPage={response.paginate.current_page}
             perPage={response.paginate.per_page}
-            total={response.paginate.total_count}
+            total={response.paginate.total}
+            last_page={response.paginate.last_page}
+
           />
         </div>
       )}

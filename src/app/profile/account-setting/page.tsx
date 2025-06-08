@@ -12,7 +12,7 @@ const AccountSettingPage = () => {
   // دریافت اطلاعات کاربر از store
   const { user } = useAuthStore();
   return (
-    <div className="w-full min-h-full h-fit px-4 mt-4">
+    <div className="w-full min-h-full h-fit px-4 my-4">
       {/* عنوان صفحه */}
       <div className="w-full flex items-center justify-between">
         <h1 className="">اطلاعات من </h1>
@@ -80,7 +80,7 @@ const AccountSettingPage = () => {
         </div>
          
         {/* دکمه ویرایش اطلاعات */}
-        <div className="w-full mt-4 text-left ">
+        <div className="w-full mt-4 pb-20 lg:pb-0  text-left ">
           <EditProfileInfo>
             <Button
               variant={"green"}

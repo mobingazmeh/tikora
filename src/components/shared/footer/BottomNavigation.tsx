@@ -27,7 +27,7 @@ const BottomNavigation = () => {
       activeIcon: (
         <Icon
           icon={"solar:home-2-bold"}
-          className="size-6  text-secondary-500"
+          className="size-6  text-green"
         />
       ),
     },
@@ -43,16 +43,16 @@ const BottomNavigation = () => {
       activeIcon: (
         <Icon
           icon={"iconamoon:category-fill"}
-          className="size-6  text-secondary-500"
+          className="size-6  text-green"
         />
       ),
     },
     {
-      path: "/sell",
-      title: "بفروش",
-      icon: <Icon icon={"uil:plus"} className="size-6  text-caption" />,
+      path: "/products",
+      title: "فروشگاه",
+      icon: <Icon icon={"mdi-light:cart"} className="size-6  text-caption" />,
       activeIcon: (
-        <Icon icon={"uil:plus"} className="size-6 text-secondary-500" />
+        <Icon icon={"mdi-light:cart"} className="size-6 text-green" />
       ),
     },
     {
@@ -60,30 +60,30 @@ const BottomNavigation = () => {
       title: "چت ",
       icon: (
         <Icon
-          icon={"solar:chat-line-outline"}
+          icon={"line-md:chat"}
           className="size-6  text-caption"
         />
       ),
       activeIcon: (
         <Icon
-          icon={"solar:chat-line-bold"}
-          className="size-6  text-secondary-500"
+          icon={"line-md:chat-filled"}
+          className="size-6  text-green"
         />
       ),
     },
   ];
   return (
-    <div className="sticky sm:hidden block bottom-0 w-full   py-1 border-t border-gray-100 bg-white   z-50">
+    <div className="fixed sm:hidden block bottom-0 w-full   py-1 border-t border-gray-100 bg-white   z-50">
            {/* نوار ناوبری پایین صفحه */}
       <ul className="w-full   flex items-center justify-between">
         {items.map((item) => {
                     // بررسی اینکه آیا مسیر کنونی با مسیر هر آیتم تطابق دارد
-          const isActive = pathname.includes(item.path);
+                    const isActive = pathname === item.path;
           return (
             <li
               key={item.title}
               className={`w-full h-12 flex items-center justify-center py-2   ${
-                isActive ? "text-secondary-500" : " text-caption"
+                isActive ? "text-green" : " text-caption"
               }`}
             >               
               <Link
@@ -112,16 +112,20 @@ const BottomNavigation = () => {
             </AuthModal>
           ) : (
              // اگر کاربر وارد شده باشد، لینک به پروفایل کاربر نمایش داده می‌شود
-            <Link
-              href={"/profile"}
-              className="flex flex-col items-center gap-2 text-sm"
-            >
-              <Icon
-                icon={"solar:user-outline"}
-                className="size-6  text-caption"
-              />
-              <span className="text-xs">پروفایل</span>
-            </Link>
+             <Link
+             href={"/profile"}
+             className={`flex flex-col items-center gap-2 text-sm ${
+               pathname === "/profile" ? "text-green" : "text-caption"
+             }`}
+           >
+             <Icon
+               icon={"line-md:account"}
+               className={`size-6 ${
+                 pathname === "/profile" ? "text-green" : "text-caption"
+               }`}
+             />
+             <span className="text-xs">پروفایل</span>
+           </Link>
           )}
         </li>
       </ul>

@@ -1,3 +1,4 @@
+"use client"
 import { ShoppingCartState } from '@/services/cart/useGetCartDetails';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
