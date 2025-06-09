@@ -81,7 +81,7 @@ const LoginProfileInfo = ({ next, stepId }: LoginProfileInfo) => {
   // فرم و رابط کاربری
   else {
     return (
-      <div className="w-full">
+      <div className="w-full mt-40">
         <div className="">
           <span className="text-xl font-medium"> تکمیل پروفایل </span>
         </div>
@@ -113,7 +113,7 @@ const LoginProfileInfo = ({ next, stepId }: LoginProfileInfo) => {
             <div className="mt-6">
               <Button
                 isLoading={isPending}
-                variant={"primary"}
+                variant={"green"}
                 className="!rounded w-full h-12"
               >
                 تایید
@@ -129,7 +129,7 @@ const LoginProfileInfo = ({ next, stepId }: LoginProfileInfo) => {
             <span>
               <Link
                 href={"statics/rules"}
-                className="text-secondary-500 font-medium"
+                className="text-green-500 font-medium"
               >
                 <span>شرایط و قوانین </span>
                 <span>{config.information_site.sitename}</span>

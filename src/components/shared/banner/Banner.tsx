@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 
-interface BannerProps {
+export interface BannerProps {
   data: {
     type: "image";
     source: string;
@@ -31,7 +31,7 @@ export default function Banner({ data, title }: BannerProps) {
   // Convert single object to array if needed and memoize the result
   const banners = useMemo(() => {
     const bannerArray = Array.isArray(data) ? data : [data];
-    
+    console.log(data)
     // Group banners by their alt text
     const groupedBanners = bannerArray.reduce((acc, banner) => {
       const key = banner.alt.includes('/') ? 'paired' : 'single';
@@ -44,14 +44,15 @@ export default function Banner({ data, title }: BannerProps) {
 
     return groupedBanners;
   }, [data]);
+  console.log(banners.paired)
 
   return (
     <div className="space-y-4">
       {/* Single banner */}
       {banners.single?.map((banner, index) => (
-        <div key={index} className="relative rounded-xl pb-6 bg-white">
+        <div key={index} className="relative rounded-xl  bg-white">
           <div className="p-4">
-            <div className="relative rounded-lg">
+            <div className="relative  rounded-lg ">
               <Image
                 src={banner.source}
                 alt={banner.alt}
@@ -69,7 +70,7 @@ export default function Banner({ data, title }: BannerProps) {
       {banners.paired && banners.paired.length > 0 && (
         <div className="relative rounded-xl pb-6 bg-white">
           <div className="p-4">
-            <div className="relative rounded-lg grid grid-cols-2 gap-4">
+            <div className="relative rounded-lg grid grid-cols-1 gap-4">
               {banners.paired.map((banner, index) => (
                 <div key={index} className="relative">
                   <Image

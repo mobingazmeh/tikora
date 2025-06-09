@@ -36,7 +36,7 @@ const RadioGroupItem = React.forwardRef<
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <Icon icon={"material-symbols:radio-button-checked"} className="h-full w-full    text-secondary-500" />
+        <Icon icon={"material-symbols:radio-button-checked"} className="h-full w-full    text-green" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

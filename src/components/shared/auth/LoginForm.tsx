@@ -64,15 +64,15 @@ const LoginForm = ({ next, stepId, data }: LoginForm) => {
   // رندر فرم ورود شماره موبایل
   else {
     return (
-      <div className="w-full">
+      <div className="w-full ">
         {/* نمایش لوگوی اپلیکیشن */}
-        <div className="">
+        <div className="flex justify-center items-center">
         <Image
           alt={config.information_site.sitename}
             src={config.information_site.logo}
-             width={100}
+             width={250}
               height={100}
-             className=""
+             className="object-cover"
               />
         </div>
 
@@ -108,7 +108,7 @@ const LoginForm = ({ next, stepId, data }: LoginForm) => {
             <div className="mt-6">
               <Button
                 isLoading={isPending}
-                variant={"primary"}
+                variant={"green"}
                 className="!rounded w-full h-12"
               >
                 تایید
@@ -124,7 +124,7 @@ const LoginForm = ({ next, stepId, data }: LoginForm) => {
             <span>
               <Link
                 href={"/"}
-                className="text-secondary-500 font-medium"
+                className="text-green-500 font-medium"
               >
                 <span>شرایط و قوانین </span>
                 <span>{config.information_site.sitename}</span>

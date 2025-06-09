@@ -19,17 +19,17 @@ const MainHeader = ({ appConfig }: MainHeaderProps) => {
     <div className="w-full sm:block hidden  fixed top-0 z-50 bg-white min-h-[60px] border-b shadow-sm py-4">
       <div className="w-full container px-6 h-full flex items-center justify-between">
                {/* لوگوی اپلیکیشن که به صفحه اصلی لینک می‌دهد */}
-        <h1 className="h-11">
+        <div className="h-11">
           <Link href={"/"}>
             <Image
               width={146}
-              height={46}
-              className="!max-h-full object-contain "
+              height={146}
+              className="!max-h-full object-cover "
               alt={appConfig?.information_site.sitename}
               src={appConfig?.information_site.logo}
             />
           </Link>
-        </h1>
+        </div>
          {/* مدال دسته‌بندی‌ها */}
         <CategoryModal />
           {/* بخش جستجو */}

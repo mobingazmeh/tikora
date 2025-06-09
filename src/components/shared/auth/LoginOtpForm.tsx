@@ -79,7 +79,7 @@ const LoginOtpForm = ({ goTo, next, data, stepId }: LoginOtpForm) => {
   // رندر فرم OTP
   else {
     return (
-      <div className="w-full">
+      <div className="w-full sm:mt-20">
         {/* عنوان */}
         <div className="">
           <span className="text-xl font-medium"> کُد تایید را وارد کنید:</span>
@@ -97,7 +97,7 @@ const LoginOtpForm = ({ goTo, next, data, stepId }: LoginOtpForm) => {
             <Button
               onClick={() => goTo?.(AuthFlowSteps.getMobile)}
               variant={"ghost"}
-              className="text-secondary-500 text-sm !p-0"
+              className="text-green text-sm !p-0"
               iconPosition="end"
               icon={
                 <Icon className="size-4" icon="solar:alt-arrow-left-linear" />
@@ -142,7 +142,7 @@ const LoginOtpForm = ({ goTo, next, data, stepId }: LoginOtpForm) => {
                 variant={"ghost"}
                 isLoading={isSendOtpPending}
                 type="button"
-                className="disabled:text-gray-700 mb-2 text-secondary-500 text-sm  w-full h-12"
+                className="disabled:text-gray-700 mb-2 text-green text-sm  w-full h-12"
               >
                 {timeHook.isEnd ? (
                   <span className="font-medium"> دریافت کد جدید </span>
@@ -159,7 +159,7 @@ const LoginOtpForm = ({ goTo, next, data, stepId }: LoginOtpForm) => {
               {/* دکمه تایید */}
               <Button
                 isLoading={isPending}
-                variant={"primary"}
+                variant={"green"}
                 className="!rounded w-full h-12"
               >
                 تایید
@@ -175,7 +175,7 @@ const LoginOtpForm = ({ goTo, next, data, stepId }: LoginOtpForm) => {
             <span>
               <Link
                 href={"statics/rules"}
-                className="text-secondary-500 font-medium"
+                className="text-green-500 font-medium"
               >
                 <span>شرایط و قوانین </span>
 

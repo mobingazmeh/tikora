@@ -14,13 +14,18 @@ import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useWindowSize } from "react-use";
 import { useId } from "react";
+import { ProductItemType } from "@/lib/types/CommonTypes";
 
 interface MainSliderProps {
-  data: HomeItemTypeGenerator<"products">;
+  data: ProductItemType[];
   slidesPerView?: number;
+  title?: string;
+  template_data?: string;
+
+
 }
 
-export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderProps) {
+export default function ProductSlider({ data,title ,slidesPerView = 6.2 }: MainSliderProps) {
   const { width } = useWindowSize(); // بررسی عرض صفحه برای واکنش‌گرایی
   const rawId = useId(); // تولید شناسه یکتا برای دکمه‌های Swiper
   const uniqueId = rawId.replaceAll(":", "");
@@ -72,27 +77,12 @@ export default function ProductSlider({ data, slidesPerView = 6.2 }: MainSliderP
 
   // حالت موبایل
   return (
-    <div className="relative pb-6 border bg-white">
-      <div className="w-full flex px-4 justify-between items-center h-20">
-        <h2 className="flex items-center w-fit gap-2 pl-2 text-md">
-          {data.title}
-        </h2>
-        <Link href={{ pathname: "/products" }}>
-          <Button
-            animation
-            iconPosition="end"
-            icon={
-              <Icon
-                icon={"fluent:chevron-left-12-filled"}
-                className="size-6"
-              />
-            }
-            variant={"glass"}
-            className="border text-secondary-500 hover:border-secondary-500 hover:bg-secondary-100/10 px-3 gap-1"
-          >
-            <span className="text-xs">مشاهده همه</span>
-          </Button>
-        </Link>
+    <div className="relative pb-6  bg-white">
+      <div className="w-full flex px-4 justify-between items-center ">
+       {/* <h2 className="flex items-center w-fit gap-2 pl-2 text-md">
+          {title}
+        </h2> */}
+      
       </div>
 
       {/* لیست محصولات به صورت اسکرولی در موبایل */}

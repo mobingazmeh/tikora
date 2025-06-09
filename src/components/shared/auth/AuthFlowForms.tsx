@@ -38,11 +38,9 @@ const AuthFlowForms = () => {
     if (user) {
       if (step !== AuthFlowSteps.getInfo) {
         setStep(AuthFlowSteps.getInfo); // رفتن به مرحله پروفایل
-      } else {
-        router.push("/"); // هدایت به صفحه اصلی
-      }
+      } 
     }
-  }, [user]);
+  }, [user,step]);
 
   // تابع برای پیشرفت به مرحله بعدی با ذخیره داده‌ها
   const nextHandler: AuthFlowFormItemProps["next"] = ({ stepId, data }) => {

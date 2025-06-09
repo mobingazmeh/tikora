@@ -44,12 +44,12 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
 
   return (
     <div className="relative rounded-xl continer pb-6  bg-white">
-      <div className="w-full flex px-4 justify-between items-center h-20">
-        <div className="flex gap-2">
+      <div className="w-full flex flex-col sm:flex-row px-4 justify-between items-center h-auto sm:h-20 gap-4 sm:gap-0">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           <Button
             variant={activeTab === "new" ? "default" : "outline"}
             onClick={() => setActiveTab("new")}
-            className={`px-6 ${
+            className={`px-6 w-full sm:w-auto text-sm sm:text-base ${
               activeTab === "new" 
                 ? "bg-[#00704a] text-white hover:bg-[#00704a]/90" 
                 : "border-[#00704a] text-[#00704a] hover:bg-[#00704a]/10"
@@ -60,7 +60,7 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
           <Button
             variant={activeTab === "best" ? "default" : "outline"}
             onClick={() => setActiveTab("best")}
-            className={`px-6 ${
+            className={`px-6 w-full sm:w-auto text-sm sm:text-base ${
               activeTab === "best" 
                 ? "bg-green text-white hover:bg-green/90" 
                 : "border-green text-green hover:bg-green/10"
@@ -69,7 +69,7 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
             {bestSellerProducts.title}
           </Button>
         </div>
-        <Link href={{ pathname: "/products", query: { sort: "" } }}>
+        <Link href={{ pathname: "/products", query: { sort: "" } }} className="w-full sm:w-auto">
             <Button
               animation
               iconPosition="end"
@@ -80,7 +80,7 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
                 />
               }
               variant={"glass"}
-              className="border border-green text-green   px-3 gap-1"
+              className="border border-green text-green w-full sm:w-auto px-3 gap-1"
             >
               <span className="text-xs">مشاهده همه</span>
             </Button>

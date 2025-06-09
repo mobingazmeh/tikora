@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { flatter } from "@/lib/utils/helper";
 import {
   CategoryItemType,
+  CategoryResponseType,
   useGetCategoriesListQuery,
 } from "@/services/categories/useGetCategoriesListQuery";
 import CategoryListItem, {
@@ -88,7 +89,9 @@ export default function CategoryList({
       return handleSortAndFilter(selectedCategory.children);
     }
     // اصلاح دسترسی به داده‌ها
-    const categories = data?.result || [];
+    const categories: CategoryItemType[] = Array.isArray(data?.result) 
+  ? data.result 
+  : data?.result?.result || [];
     console.log("📊 Categories before organization:", categories);
     const organized = handleSortAndFilter(categories);
     console.log("📊 Organized items:", organized);

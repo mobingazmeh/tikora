@@ -32,13 +32,13 @@ export default function DiscountProductsSlider({ data, title = "تخفیف دا�
               icon={
                 <Icon
                   icon={"fluent:chevron-left-12-filled"}
-                  className="size-6"
+                  className="size-6 "
                 />
               }
               variant={"glass"}
-              className="border text-white hover:border-white hover:bg-white/10 px-3 gap-1"
+              className="border flex text-white hover:border-white hover:bg-white/10 px-3 gap-1 "
             >
-              <span className="text-xs">مشاهده همه</span>
+              <span className="text-xs ">مشاهده همه</span>
             </Button>
           </Link>
         </div>

@@ -13,8 +13,10 @@ export type HomeItemType =
   | "slider_image"
   | "slider_products"
   | "banner"
-  | "list_categories"
+  | "list_categories";
+  
 
+// ... existing code ...
 export interface SliderItemType {
   type: "image";
   source: string;
@@ -54,27 +56,26 @@ export type HomeItemDataTypeGenerator<T extends HomeItemType> =
     ? ProductItemType
     : T extends "special_markets";
 
-export type BaseHomeItemDataType = {
-  id: number;
-  title: string;
-  template_data?: string;
-  component: HomeItemType;
-  /**
-   * Determines where to show the content.
-   * - `1`: Mobile and Desktop
-   * - `2`: Desktop
-   | "mobile";
-   */
-  show_in: 1 | 2 | 3;
-  query: {
-    url: string;
-    method: "POST";
-    body: {
-      basic_filter?: CanFilterType;
-      [key: string]: any;
+    export type BaseHomeItemDataType = {
+      id: number;
+      title: string;
+      template_data?: string;
+      component: HomeItemType;
+      row?: number;           // اضافه کردن row
+      order?: number;         // اضافه کردن order
+      col_sm?: string;        // اضافه کردن col_sm
+      col_md?: string;        // اضافه کردن col_md
+      col_lg?: string;        // اضافه کردن col_lg
+      show_in: 1 | 2 | 3;
+      query: {
+        url: string;
+        method: "POST";
+        body: {
+          basic_filter?: CanFilterType;
+          [key: string]: any;
+        };
+      };
     };
-  };
-};
 
 export interface BannerItemType {
   component: "banner";

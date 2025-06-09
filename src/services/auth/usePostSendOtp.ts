@@ -15,6 +15,9 @@ export interface PostOtpRequestResponse {
 
 export interface PostOtpRequestParams {
   phone: string;
+  exists: number,
+  type: string,
+  minutes:number;
 }
 
 export async function postSendOtp({ phone }: PostOtpRequestParams) {
