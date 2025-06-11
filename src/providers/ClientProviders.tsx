@@ -15,7 +15,7 @@ interface ClientProvidersProps {
 const ClientProviders = ({ appConfig, userData }: ClientProvidersProps) => {
   const {logout}=useAuthStore()
   useLayoutEffect(() => {
-    initializeAppConfig(appConfig.results);
+    initializeAppConfig(appConfig?.results);
   }, [appConfig]);
  //مشابه useEffect است ولی زودتر اجرا می‌شود (قبل از ترسیم صفحه)، برای مقاصد حساس به UI.
  // Auth Store یا خروج کارب
@@ -35,7 +35,7 @@ const ClientProviders = ({ appConfig, userData }: ClientProvidersProps) => {
     //console.warn("⚠️ userData یا token نداریم → اجرای logout");
     logout(false);
   }
-}, [userData]);
+}, [userData, logout]);
 
 
 

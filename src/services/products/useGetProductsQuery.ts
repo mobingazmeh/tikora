@@ -4,7 +4,6 @@ import { QUERY_KEYS } from "@/constants/QueryKeys";
 import { unstable_cache } from "next/cache";
 import axiosClient from "../axiosClient";
 import { GetProductsReqParams, ProductsListResponseType, SingleServiceResponseType } from "@/lib/types/CommonTypes";
-import { url } from "inspector";
 
 //تایپ لیست محصولات
 

@@ -23,7 +23,7 @@ export default function Loading() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" className="sm:size-24 size-16">
           {/* دایره اول */}
           <circle
-            className="fill-primary-500 stroke-primary-500"
+            className="fill-green stroke-green"
             strokeWidth="15"
             r="15"
             cx="40"
@@ -42,7 +42,7 @@ export default function Loading() {
           
           {/* دایره دوم */}
           <circle
-            className="fill-primary-500 stroke-primary-500"
+            className="fill-green stroke-green"
             strokeWidth="15"
             r="15"
             cx="100"
@@ -61,7 +61,7 @@ export default function Loading() {
           
           {/* دایره سوم */}
           <circle
-            className="fill-primary-500 stroke-primary-500"
+            className="fill-green stroke-green"
             strokeWidth="15"
             r="15"
             cx="160"

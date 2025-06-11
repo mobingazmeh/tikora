@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ProductDetailsResponseType } from "@/lib/types/CommonTypes";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import Image from "next/image";
 import React, { useState } from "react";
 
 interface ProductDescription {

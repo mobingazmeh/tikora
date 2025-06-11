@@ -4,7 +4,6 @@ import { AxiosError } from "axios";
 import { SingleServiceResponseType } from "@/lib/types/CommonTypes";
 import axiosClient from "../axiosClient";
 import { User } from "@/lib/store/useAuthStore";
-import Cookies from "js-cookie";
 import { useAuthStore } from "@/lib/store/useAuthStore";
 
 export interface PostLoginByOtpRequestResponse {

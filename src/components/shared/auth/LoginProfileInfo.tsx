@@ -58,7 +58,8 @@ const LoginProfileInfo = ({ next, stepId }: LoginProfileInfo) => {
         convertNullPropertiesToEmptyString({ reagent_code: "", ...user }) // مقدار null را به رشته خالی تبدیل می‌کنیم
       );
     }
-  }, [user]);
+  }, [user, form]);
+
 
   const { mutateAsync, isPending } = usePostUpdateProfile(); // تابع ارسال اطلاعات پروفایل به API
 

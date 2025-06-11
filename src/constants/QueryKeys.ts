@@ -13,4 +13,6 @@ export const QUERY_KEYS = {
   basketDetails: "BASKET_DETAILS",
   favouritesList: "FAVOURITES_LIST",
   favouritesToggle: "FAVOURITES_TOGGLE",
+  homeData:"HOME_DATA",
+  footerData:"FOOTER_DATA",
 };

@@ -54,7 +54,9 @@ export type HomeItemDataTypeGenerator<T extends HomeItemType> =
     ? ProductItemType
     : T extends "products"
     ? ProductItemType
-    : T extends "special_markets";
+    : T extends "special_markets"
+    ? ProductItemType  // اضافه کردن نوع برگشتی برای special_markets
+    : never; 
 
     export type BaseHomeItemDataType = {
       id: number;

@@ -6,13 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import ProductItem from "@/components/shared/product-item/ProductItem";
-import { Button } from "@/components/ui/button";
-import { HomeItemTypeGenerator } from "@/lib/types/HomeServiceTypes";
 import { Navigation, Pagination } from "swiper/modules";
 import { ProductSliderButtons } from "../utils/ProductSliderButtons";
-import Link from "next/link";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { useWindowSize } from "react-use";
+ import { useWindowSize } from "react-use";
 import { useId } from "react";
 import { ProductItemType } from "@/lib/types/CommonTypes";
 
@@ -25,7 +21,7 @@ interface MainSliderProps {
 
 }
 
-export default function ProductSlider({ data,title ,slidesPerView = 6.2 }: MainSliderProps) {
+export default function ProductSlider({ data ,slidesPerView = 6.2 }: MainSliderProps) {
   const { width } = useWindowSize(); // بررسی عرض صفحه برای واکنش‌گرایی
   const rawId = useId(); // تولید شناسه یکتا برای دکمه‌های Swiper
   const uniqueId = rawId.replaceAll(":", "");

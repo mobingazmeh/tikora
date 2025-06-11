@@ -54,7 +54,7 @@ const AddToBasketButton = ({ product }: AddToBasketButtonProps) => {
           theme: "dark"
         });
       }
-    } catch (error) {
+    } catch  {
       toast.error("خطا در عملیات سبد خرید", {
         position: "top-right",
         rtl: true,

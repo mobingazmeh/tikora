@@ -114,7 +114,6 @@ const ProfileMenu = () => {
 
     // دریافت مسیر فعلی برای تشخیص آیتم فعال
     const pathname = usePathname();
-    const path = pathname.split("/").pop();
 
     return (
       <div

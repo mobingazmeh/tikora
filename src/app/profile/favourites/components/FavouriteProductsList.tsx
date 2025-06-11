@@ -3,15 +3,11 @@
 import { useGetFavouritesQuery } from "@/services/favourites/useGetFavourites";
 import ProductItem from "@/components/shared/product-item/ProductItem";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { toast } from "react-toastify";
 import EmptyFavourites from "./EmptyFavourites";
 
 
 export default function FavouriteProductsList() {
   const { data: favouritesData, isLoading } = useGetFavouritesQuery();
-  const [isClearing, setIsClearing] = useState(false);
 
   if (isLoading) {
     return (
@@ -25,16 +21,7 @@ export default function FavouriteProductsList() {
     return <EmptyFavourites/>
   }
 
-  const handleClearAll = async () => {
-    setIsClearing(true);
-    try {
-      // TODO: Implement clear all favourites
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-    } finally {
-      setIsClearing(false);
-    }
-  };
+  
 
   return (
     <div className="space-y-6">

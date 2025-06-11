@@ -9,7 +9,7 @@ interface PaginationProps {
   last_page: number;
 }
 
-const Pagination = ({ currentPage, perPage, total, last_page }: PaginationProps) => {
+const Pagination = ({ currentPage, perPage, last_page }: PaginationProps) => {
   // استفاده از hook `useQueryManager` برای به‌روزرسانی صفحه فعلی
   const { setState } = useQueryManager();
 

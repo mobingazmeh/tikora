@@ -6,7 +6,6 @@ import { unstable_cache } from "next/cache";
 
 import { QUERY_KEYS } from "@/constants/QueryKeys";
 import {
-  PaginationType,
   SingleServiceResponseType,
 } from "@/lib/types/CommonTypes";
 import axiosClient from "../axiosClient";

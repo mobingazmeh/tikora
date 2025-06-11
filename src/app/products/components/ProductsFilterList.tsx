@@ -10,7 +10,7 @@ import {
 import NotFoundProducts from "./NotFoundProducts";
 
 interface ProductsFilterListProps {
-  market_id?: string;
+  
   searchParams?: any;
 }
 
@@ -18,7 +18,6 @@ interface ProductsFilterListProps {
 
 
 const ProductsFilterList = async ({
-  market_id,
   searchParams,
 }: ProductsFilterListProps) => {
   const filter = await searchParams;

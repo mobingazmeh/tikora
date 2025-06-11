@@ -45,7 +45,7 @@ const LoginForm = ({ next, stepId, data }: LoginForm) => {
       exists: 1,
       type: "phone",
       minutes: 10,
-    }).then((res) => {
+    }).then(() => {
       // رفتن به مرحله بعد و ذخیره شماره و کد OTP (برای dev)
       next({
         data: {

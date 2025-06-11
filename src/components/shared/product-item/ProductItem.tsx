@@ -63,7 +63,7 @@ const handleCartAction = async (e: React.MouseEvent) => {
         theme: "dark"
       });
     }
-  } catch (error) {
+  } catch  {
     toast.error("خطا در عملیات سبد خرید", {
       position: "top-right",
       rtl: true,
@@ -87,7 +87,7 @@ const handleToggleFavourite = async (e: React.MouseEvent) => {
       rtl: true,
       theme: "dark",
     });
-  } catch (error) {
+  } catch  {
     toast.error("خطا در تغییر علاقه‌مندی", {
       position: "top-right",
       rtl: true,

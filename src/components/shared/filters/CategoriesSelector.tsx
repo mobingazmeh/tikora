@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useMemo, useState } from "react";
+import {  useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import useQueryManager from "@/lib/utils/useQueryManager";
 import {
   useGetCategoriesListQuery,
-  CategoryItemType,
+  
 } from "@/services/categories/useGetCategoriesListQuery";
 import { CategoriesListItemShimmer } from "../header/components/CategoryListItem";
 
@@ -16,7 +16,7 @@ export default function CategoriesSelector({
   className,
 }: React.ComponentProps<"form"> & { onChange: (id: any) => void }) {
   // گرفتن دسته‌بندی‌ها
-  const { data, isLoading, error } = useGetCategoriesListQuery({
+  const { data, isLoading } = useGetCategoriesListQuery({
     type: "product",
     WithOutChildren: 0,
     limit: 100,

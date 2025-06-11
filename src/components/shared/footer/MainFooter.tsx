@@ -1,3 +1,4 @@
+"use client"
 import { AppConfigType } from "@/services/useGetAppConfig";
 
 import Image from "next/image";
@@ -110,28 +111,37 @@ const MainFooter = ({ appConfig }: MainFooterProps) => {
             </div>
 
             {/* بخش سوم: مجوزها و شبکه‌های اجتماعی */}
-            <div className="w-fit    ">
-              <div className="flex gap-x-4 mb-4">
-                {/* نمایش مجوزها */}
-                <div
-                  className="w-40 h-[130px] border rounded-lg"
-                  dangerouslySetInnerHTML={{
-                    __html: appConfig?.social,
-                  }}
-                ></div>
-                <div
-                  className="w-40 h-[130px]  border rounded-lg"
-                  dangerouslySetInnerHTML={{
-                    __html: appConfig?.social,
-                  }}
-                ></div>
-                <div
-                  className="w-40 h-[130px] border rounded-lg"
-                  dangerouslySetInnerHTML={{
-                    __html: appConfig?.social,
-                  }}
-                ></div>
-              </div>
+                    <div className="w-fit    ">
+                      <div className="flex gap-x-4 mb-4">
+                        {/* نمایش مجوزها */}
+                        <div className="w-40 h-[130px] border rounded-lg flex items-center justify-center p-2">
+    <Image
+      src="/assets/images/script.png"
+      alt="مجوز اسکریپت"
+      width={160}
+      height={130}
+      className="w-full h-full object-contain"
+    />
+  </div>
+  <div className="w-40 h-[130px] border rounded-lg flex items-center justify-center p-2">
+    <Image
+      src="/assets/images/logo.png"
+      alt="لوگو"
+      width={160}
+      height={130}
+      className="w-full h-full object-contain"
+    />
+  </div>
+  <div className="w-40 h-[130px] border rounded-lg flex items-center justify-center p-2">
+    <Image
+      src="/assets/images/footerlicensesunion.png"
+      alt="مجوز اتحادیه"
+      width={160}
+      height={130}
+      className="w-full h-full object-contain"
+    />
+  </div>
+                      </div>
 
               {/* نمایش شبکه‌های اجتماعی */}
               <div className="w-full  ">

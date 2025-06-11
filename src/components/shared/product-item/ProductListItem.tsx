@@ -64,7 +64,7 @@ const ProductListItem = ({ item }: ProductListItemProps) => {
           theme: "dark"
         });
       }
-    } catch (error) {
+    } catch  {
       toast.error("خطا در عملیات سبد خرید", {
         position: "top-right",
         rtl: true,
@@ -87,7 +87,7 @@ const ProductListItem = ({ item }: ProductListItemProps) => {
         rtl: true,
         theme: "dark",
       });
-    } catch (error) {
+    } catch  {
       toast.error("خطا در تغییر علاقه‌مندی", {
         position: "top-right",
         rtl: true,

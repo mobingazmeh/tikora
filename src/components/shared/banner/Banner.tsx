@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useMemo } from "react";
 
 export interface BannerProps {
   data: {
@@ -27,62 +25,63 @@ export interface BannerProps {
   title: string | null;
 }
 
-export default function Banner({ data, title }: BannerProps) {
-  // Convert single object to array if needed and memoize the result
-  const banners = useMemo(() => {
-    const bannerArray = Array.isArray(data) ? data : [data];
-    console.log(data)
-    // Group banners by their alt text
-    const groupedBanners = bannerArray.reduce((acc, banner) => {
-      const key = banner.alt.includes('/') ? 'paired' : 'single';
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(banner);
-      return acc;
-    }, {} as Record<string, typeof bannerArray>);
-
-    return groupedBanners;
-  }, [data]);
-  console.log(banners.paired)
+export default function Banner({ data }: BannerProps) {
+  // Convert single object to array if needed
+  const bannerArray = Array.isArray(data) ? data : [data];
+  
+  // Separate banners based on their alt text
+  const singleBanner = bannerArray.find(banner => !banner.alt.includes('/'));
+  const pairedBanners = bannerArray.filter(banner => banner.alt.includes('/'));
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" >
       {/* Single banner */}
-      {banners.single?.map((banner, index) => (
-        <div key={index} className="relative rounded-xl  bg-white">
-          <div className="p-4">
-            <div className="relative  rounded-lg ">
+      {singleBanner && (
+        <div className="relative rounded-xl bg-white w-full h-full  ">
+          <div className="">
+            <div className="relative rounded-lg ">
               <Image
-                src={banner.source}
-                alt={banner.alt}
+                src={singleBanner.source}
+                alt={singleBanner.alt}
                 width={1216}
                 height={300}
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg "
                 onError={e => e.currentTarget.classList.add('!hidden')}
               />
             </div>
           </div>
         </div>
-      ))}
+      )}
 
-      {/* Paired banners */}
-      {banners.paired && banners.paired.length > 0 && (
-        <div className="relative rounded-xl pb-6 bg-white">
+    {/* Paired banners */}
+    {pairedBanners.length > 0 && (
+        <div className="relative rounded-xl pb-6 bg-white w-full">
           <div className="p-4">
-            <div className="relative rounded-lg grid grid-cols-1 gap-4">
-              {banners.paired.map((banner, index) => (
-                <div key={index} className="relative">
+            <div className="relative rounded-lg flex flex-row gap-4">
+              {pairedBanners[0] && (
+                <div className="relative  w-1/2">
                   <Image
-                    src={banner.source}
-                    alt={banner.alt}
-                    width={1216}
+                    src={pairedBanners[0].source}
+                    alt={pairedBanners[0].alt}
+                    width={300}
                     height={300}
                     className="w-full h-auto rounded-lg"
                     onError={e => e.currentTarget.classList.add('!hidden')}
                   />
                 </div>
-              ))}
+              )}
+              {pairedBanners[1] && (
+                <div className="relative w-1/2">
+                  <Image
+                    src={pairedBanners[1].source}
+                    alt={pairedBanners[1].alt}
+                    width={300}
+                    height={300}
+                    className="w-full h-auto rounded-lg"
+                    onError={e => e.currentTarget.classList.add('!hidden')}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

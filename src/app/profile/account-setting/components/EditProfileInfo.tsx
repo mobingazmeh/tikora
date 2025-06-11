@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthStore, User } from "@/lib/store/useAuthStore";
+import { useAuthStore } from "@/lib/store/useAuthStore";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -17,7 +17,6 @@ import { FormField, FormMessage, FormItem, Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { usePostUpdateProfile, PostUpdateProfileRequestParams } from "@/services/auth/usePostUpdateProfile";
 import { Button } from "@/components/ui/button";
-import AdvanceSelect from "@/components/ui/advance-select";
 //import { useGetCountries } from "@/services/locations/useGetCountries";
 //import { useGetProvinces } from "@/services/locations/useGetProvinces";
 //import { useGetCities } from "@/services/locations/useGetCities";

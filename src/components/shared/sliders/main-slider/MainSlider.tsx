@@ -8,20 +8,12 @@ import "swiper/css/navigation";
 
 // Import required modules
 import {
-  HomeItemTypeGenerator,
   SliderItemType,
 } from "@/lib/types/HomeServiceTypes";
 import Image from "next/image";
-import Link from "next/link";
-import { ReactNode, useId } from "react";
+import {  useId } from "react";
 import { Navigation, Pagination } from "swiper/modules";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import "swiper/css/pagination";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -91,12 +83,15 @@ export default function MainSlider({ data }: MainSliderProps) {
   );
 }
 
-interface MainSliderItemWrapperProps {
+
+{/*
+  
+  interface MainSliderItemWrapperProps {
   item: SliderItemType;
   children: ReactNode;
 }
 
-{/*const MainSliderItemWrapper = ({
+  const MainSliderItemWrapper = ({
   children,
   item,
 }: MainSliderItemWrapperProps) => {

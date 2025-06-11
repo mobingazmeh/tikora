@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from "@/constants/QueryKeys";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Axios, AxiosError } from "axios";
+import {  AxiosError } from "axios";
 import { unstable_cache } from "next/dist/server/web/spec-extension/unstable-cache";
 import axiosClient from "./axiosClient";
 

@@ -13,7 +13,7 @@ import ReactQueryProvider from "@/providers/ReactQueryProvider";
 // ایمپورت سرویس‌های مورد نیاز
 import { getUserProfileReq } from "@/services/auth/useGetUserProfile";
 import { getAppConfigReq, getCacheAppConfigReq } from "@/services/useGetAppConfig";
-import { useGetHomeDataReqMutation } from "@/services/home/useGetHomeDataQuery";
+import { getCachedHomeData } from "@/services/home/useGetHomeDataQuery";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -63,7 +63,7 @@ export default async function RootLayout({
   const token = (await cookies()).get("token")?.value;
 
   let userProfile = null;
-    console.log("📦 useGetHomeDataReqMutation Config:", useGetHomeDataReqMutation);
+    console.log("📦 useGetHomeDataReqMutation Config:", getCachedHomeData);
 
   //console.log("📦 App Config:", appConfig);
   // تلاش برای دریافت پروفایل کاربر
@@ -73,7 +73,7 @@ export default async function RootLayout({
         Authorization: `Bearer ${token}`,
       },
     });
-  } catch (error: any) {
+  } catch  {
     userProfile = null;
   }
   return (
@@ -95,7 +95,7 @@ export default async function RootLayout({
           
           {/* هدر موبایل و دسکتاپ */}
           <MobileHeader />
-          <MainHeader appConfig={appConfig?.results} />
+          <MainHeader appConfig={appConfig?.results } />
           
           {/* محتوای اصلی برنامه */}
           <Suspense fallback={<Loading />}>{children}</Suspense>

@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { flatter } from "@/lib/utils/helper";
 import {
   CategoryItemType,
-  CategoryResponseType,
   useGetCategoriesListQuery,
 } from "@/services/categories/useGetCategoriesListQuery";
 import CategoryListItem, {
@@ -69,7 +68,7 @@ export default function CategoryList({
   };
 
   // مرتب‌سازی دسته‌بندی‌ها بر اساس تعداد زیرگروه‌ها و فیلتر بر اساس جستجو
-  const handleSortAndFilter = (list: CategoryItemType[]) => {
+  const handleSortAndFilter = useCallback((list: CategoryItemType[]) => {
     return list
       .sort((a, b) => {
         // اول دسته‌بندی‌های با زیرگروه
@@ -81,22 +80,19 @@ export default function CategoryList({
       .filter((item) => 
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-  };
+  }, [searchQuery]);
 
   // آماده‌سازی لیست مرتب‌شده و فیلترشده دسته‌بندی‌ها
   const organizedItems = useMemo(() => {
     if (selectedCategory) {
       return handleSortAndFilter(selectedCategory.children);
     }
-    // اصلاح دسترسی به داده‌ها
     const categories: CategoryItemType[] = Array.isArray(data?.result) 
-  ? data.result 
-  : data?.result?.result || [];
-    console.log("📊 Categories before organization:", categories);
+      ? data.result 
+      : data?.result?.result || [];
     const organized = handleSortAndFilter(categories);
-    console.log("📊 Organized items:", organized);
     return organized;
-  }, [selectedCategory, data?.result, searchQuery]);
+  }, [selectedCategory, data?.result, handleSortAndFilter]);
 
   return (
     <form className={cn("flex flex-col h-full flex-1 w-full", className)}>

@@ -79,7 +79,7 @@ const SearchFilter = () => {
       <Button
         isLoading={isLoading} // نمایش لودینگ در هنگام ارسال یا پاک کردن جستجو
         onClick={handleSubmit} // ارسال درخواست جستجو یا پاک کردن آن
-        variant={"secondary"}
+        variant={"green"}
         size={"icon"}
         icon={
           <Icon
