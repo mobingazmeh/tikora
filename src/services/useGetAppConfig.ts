@@ -96,7 +96,6 @@ export function useDetAppConfigReqMutation(){
     },
   });
 }
-console.log('useGetAppConfigReqQuery',useGetAppConfigReqQuery)
 export function useGetAppConfigReqQuery(){
 
   return useQuery<AppConfigType,AxiosError,AppConfigType>({

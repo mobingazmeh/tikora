@@ -13,7 +13,6 @@ import ReactQueryProvider from "@/providers/ReactQueryProvider";
 // ایمپورت سرویس‌های مورد نیاز
 import { getUserProfileReq } from "@/services/auth/useGetUserProfile";
 import { getAppConfigReq, getCacheAppConfigReq } from "@/services/useGetAppConfig";
-import { getCachedHomeData } from "@/services/home/useGetHomeDataQuery";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -28,7 +27,6 @@ import Loading from "./loading";
  */
 export async function generateMetadata(): Promise<Metadata> {
   const appConfig = await getCacheAppConfigReq();
-  console.log('dd',appConfig)
   return {
     manifest: "/api/manifest",
     title: {
@@ -63,7 +61,7 @@ export default async function RootLayout({
   const token = (await cookies()).get("token")?.value;
 
   let userProfile = null;
-    console.log("📦 useGetHomeDataReqMutation Config:", getCachedHomeData);
+    //console.log("📦 useGetHomeDataReqMutation Config:", getCachedHomeData);
 
   //console.log("📦 App Config:", appConfig);
   // تلاش برای دریافت پروفایل کاربر

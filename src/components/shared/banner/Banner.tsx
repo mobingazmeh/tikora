@@ -37,7 +37,7 @@ export default function Banner({ data }: BannerProps) {
     <div className="space-y-4" >
       {/* Single banner */}
       {singleBanner && (
-        <div className="relative rounded-xl bg-white w-full h-full  ">
+        <div className="relative rounded-xl bg-white w-full h-full  hidden sm:block">
           <div className="">
             <div className="relative rounded-lg ">
               <Image
