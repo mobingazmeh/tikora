@@ -9,31 +9,14 @@ const DesktopSort = () => {
   const { state, setState } = useQueryManager();
  // تعریف آرایه‌ای از گزینه‌های مرتب‌سازی
  const items = [
-  {
-    id: 1,
-    sort_order: "ASC", // مرتب‌سازی صعودی
-    sort_by: "created_at", // مرتب‌سازی بر اساس تاریخ ایجاد
-    title: "جدیدترین", // عنوان گزینه مرتب‌سازی
-  },
-    {
-      id: 2,
-      sort_order: "DESC",
-      sort_by: "sale_price",
-      title: "گرانترین",
-    },
-    {
-      id: 3,
-      sort_order: "ASC",
-      sort_by: "sale_price",
-      title: "ارزانترین",
-    },
-    {
-      id: 4,
-      sort_order: "DESC",
-      sort_by: "off_percent",
-      title: "پر تخفیف ترین",
-    },
-  ];
+  { id: 1, sort: "desc", title: "جدیدترین" },
+  { id: 2, sort: "desc_price_products", title: "گرانترین" },
+  { id: 3, sort: "acs_price_products", title: "ارزانترین" },
+  { id: 4, sort: "desc_discount_products", title: "پر تخفیف ترین" },
+  { id: 5, sort: "best_seller_products", title: "پر فروش ترین" },
+
+];
+
 
  // رندر کامپوننت
  return (
@@ -52,8 +35,7 @@ const DesktopSort = () => {
       {items.map((item) => {
         // بررسی وضعیت فعال بودن گزینه مرتب‌سازی
         const isActive =
-          state.sort_order === item.sort_order &&
-          state.sort_by === item.sort_by;
+          state.sort === item.sort 
 
         return (
           <button
@@ -65,8 +47,7 @@ const DesktopSort = () => {
             onClick={() => {
               // تغییر وضعیت مرتب‌سازی
               setState({
-                sort_order: item.sort_order,
-                sort_by: item.sort_by,
+                sort: item.sort,
               });
             }}
           >

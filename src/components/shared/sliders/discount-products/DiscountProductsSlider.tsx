@@ -25,7 +25,7 @@ export default function DiscountProductsSlider({ data, title = "تخفیف دا�
               <p className="text-sm opacity-90">تا 50% تخفیف</p>
             </div>
           </div>
-          <Link href={{ pathname: "/products", query: { sort: "discount_products" } }}>
+          <Link href={{ pathname: "/products", query: { sort: "desc_discount_products" } }}>
             <Button
               animation
               iconPosition="end"

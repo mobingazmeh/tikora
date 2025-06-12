@@ -40,17 +40,17 @@ interface ProductTabsProps {
 }
 
 export default function ProductTabs({ newProducts, bestSellerProducts }: ProductTabsProps) {
-  const [activeTab, setActiveTab] = useState<"new" | "best">("new");
+  const [activeTab, setActiveTab] = useState<"new_products" | "acs_price_products">("new_products");
 
   return (
     <div className="relative rounded-xl continer pb-6  bg-white">
       <div className="w-full flex flex-col sm:flex-row px-4 justify-between items-center h-auto sm:h-20 gap-4 sm:gap-0">
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           <Button
-            variant={activeTab === "new" ? "default" : "outline"}
-            onClick={() => setActiveTab("new")}
+            variant={activeTab === "new_products" ? "default" : "outline"}
+            onClick={() => setActiveTab("new_products")}
             className={`px-6 w-full sm:w-auto text-sm sm:text-base ${
-              activeTab === "new" 
+              activeTab === "new_products" 
                 ? "bg-[#00704a] text-white hover:bg-[#00704a]/90" 
                 : "border-[#00704a] text-[#00704a] hover:bg-[#00704a]/10"
             }`}
@@ -58,10 +58,10 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
             {newProducts.title}
           </Button>
           <Button
-            variant={activeTab === "best" ? "default" : "outline"}
-            onClick={() => setActiveTab("best")}
+            variant={activeTab === "acs_price_products" ? "default" : "outline"}
+            onClick={() => setActiveTab("acs_price_products")}
             className={`px-6 w-full sm:w-auto text-sm sm:text-base ${
-              activeTab === "best" 
+              activeTab === "acs_price_products" 
                 ? "bg-green text-white hover:bg-green/90" 
                 : "border-green text-green hover:bg-green/10"
             }`}
@@ -69,7 +69,12 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
             {bestSellerProducts.title}
           </Button>
         </div>
-        <Link href={{ pathname: "/products", query: { sort: "" } }} className="w-full sm:w-auto">
+        <Link  href={{ 
+            pathname: "/products", 
+            query: { 
+              sort: activeTab === "new_products" ? "desc" : "best_seller_products" 
+            } 
+          }}  className="w-full sm:w-auto">
             <Button
               animation
               iconPosition="end"
@@ -88,7 +93,7 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
       </div>
       
       <div className="">
-        {activeTab === "new" && (
+        {activeTab === "new_products" && (
           <ProductSlider 
             data={newProducts.data} 
             title={newProducts.title} 
@@ -96,7 +101,7 @@ export default function ProductTabs({ newProducts, bestSellerProducts }: Product
             slidesPerView={6.2}
           />
         )}
-        {activeTab === "best" && (
+        {activeTab === "acs_price_products" && (
           <ProductSlider 
             data={bestSellerProducts.data} 
             title={bestSellerProducts.title} 

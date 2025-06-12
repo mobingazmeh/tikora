@@ -4,10 +4,10 @@ export const filterNames = {
   price_start: "قیمت از ",
   price_end: "  تا ",
   just_exist: "فقط محصولات موجود ",
-  asc_price_products: "ارزان ترین",
+  acs_price_products: "ارزان ترین",
   desc_price_products: "گران ترین",
-  discount_products: "پر تخفیف ترین",
-  new_products: "جدید ترین",
+  desc_discount_products: "پر تخفیف ترین",
+  desc: "جدید ترین",
   random_products: "تصادفی",
   favourite_products: "محبوب ترین",
   best_seller_products: "پرفروش ترین"

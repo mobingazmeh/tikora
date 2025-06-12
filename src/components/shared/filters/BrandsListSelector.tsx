@@ -15,29 +15,33 @@ const BrandsListSelector = () => {
   // مقداردهی برندهای انتخاب‌شده فقط وقتی state تغییر کنه
   const selectedBrands = useMemo(() => {
     if (!state.brands) return [];
-    return Array.isArray(state.brands) ? state.brands.map(String) : [String(state.brands)];
+    return Array.isArray(state.brands) 
+      ? state.brands.map(Number) // تبدیل به عدد
+      : [Number(state.brands)]; // تبدیل به عدد
   }, [state.brands]);
 
   const brands = data?.result || [];
 
   // انتخاب یا حذف برند از لیست انتخاب‌شده
   const handleSelectBrand = useCallback((status: boolean, id: string | number) => {
-    const stringId = String(id);
-    const isAlreadySelected = selectedBrands.includes(stringId);
+    const numericId = Number(id); // تبدیل به عدد
+    const isAlreadySelected = selectedBrands.includes(numericId);
 
     // جلوگیری از setState تکراری
     if (status && isAlreadySelected) return;
     if (!status && !isAlreadySelected) return;
 
     const newSelectedBrands = status 
-      ? [...selectedBrands, stringId]
-      : selectedBrands.filter((x) => x !== stringId);
+      ? [...selectedBrands, numericId] // ذخیره به صورت عدد
+      : selectedBrands.filter((x) => x !== numericId);
+
+    console.log('New selected brands:', newSelectedBrands); // اضافه کردن لاگ
 
     if (newSelectedBrands.length === 0) {
       deleteState(["brands"]);
     } else {
       setState({ 
-        brands: newSelectedBrands,
+        brands: newSelectedBrands, // ارسال آرایه‌ای از اعداد
         page: 1, // ریست کردن صفحه به ۱ در صورت تغییر فیلتر
       });
     }
@@ -62,7 +66,7 @@ const BrandsListSelector = () => {
             <BrandsListItemShimmer />
             <BrandsListItemShimmer />
             <BrandsListItemShimmer />
-          </>
+     </>
         ) : (
           brands
             .filter((item: BrandItemType) => 
@@ -76,7 +80,7 @@ const BrandsListSelector = () => {
                 <div className="flex gap-x-4">
                   <Checkbox
                     value={item.id}
-                    checked={selectedBrands.includes(String(item.id))}
+                    checked={selectedBrands.includes(Number(item.id))}
                     onCheckedChange={(status: boolean) => {
                       handleSelectBrand(status, item.id);
                     }}

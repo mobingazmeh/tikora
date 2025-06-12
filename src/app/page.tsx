@@ -30,7 +30,7 @@ export default async function Page() {
   const brandSlider = homeData.find(item => item.component === "slider_image" && item.row === 6);
   const newProducts = homeData.find(item => item.component === "slider_products" && item.template_data === "desc");
   const singleBanner = homeData.find(item => item.component === "banner" && item.row === 8);
-
+console.log(homeData)
   return (
     <div className="container mx-auto px-4 space-y-6">
       {/* اسلایدر اصلی */}

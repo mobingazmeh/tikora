@@ -11,7 +11,7 @@ const PriceRangeSelector = () => {
   // نگه‌داری مقادیر حداقل و حداکثر قیمت
   const [values, setValues] = useState([
     Number(state.price_start) || 100000,  // مقدار پیش‌فرض برای حداقل قیمت
-    Number(state.price_end) || 100000000, // مقدار پیش‌فرض برای حداکثر قیمت
+    Number(state.price_end) || 10000000, // مقدار پیش‌فرض برای حداکثر قیمت
   ]);
 
   // تابعی برای تغییر مقادیر ورودی قیمت‌ها
