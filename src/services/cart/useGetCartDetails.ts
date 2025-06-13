@@ -94,9 +94,10 @@ export interface ManualCartTableProps {
 }
 
 export interface ApiResponse<T> {
-  data: T | null;
-  error: string | null;
-  success:boolean ;
+  success: boolean;
+  status: number;
+  result: T;
+  error: any[];
 }
 
 // درخواست دریافت جزئیات سبد خرید
@@ -140,7 +141,7 @@ export function useGetCartDetailsQuery() {
     queryFn: async () => {
       const response = await getCartDetailsReq(payload);
       console.log("✅ پاسخ API:", response);
-      return response?.result || null;
+      return (response as unknown as ApiResponse<CartDetails>)?.result || null;
     },
     queryKey: [QUERY_KEYS.basketDetails, payload],
   });

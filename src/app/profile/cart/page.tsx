@@ -13,6 +13,7 @@ import { useState } from "react";
 
 const CartPage = () => {
   const { data: cartData, isLoading } = useGetCartDetailsQuery();
+  console.log("📦 داده‌های سبد خرید:", cartData);
   const { removeItemFromCart, updateQuantity, clearCart } = useShoppingCartStore();
   const router = useRouter();
   const [loadingProductId, setLoadingProductId] = useState<number | null>(null);

@@ -24,11 +24,12 @@ export interface FavouriteItem {
 
 // دریافت لیست علاقه‌مندی‌ها
 export async function getFavouritesReq(): Promise<SingleServiceResponseType<FavouriteItem[]>> {
-      return (await axiosClient({
-      method: "get",
-      url: "/favourite",
-      params: { type: "products" },
-    }));
+  const response = await axiosClient<SingleServiceResponseType<FavouriteItem[]>>({
+    method: "get",
+    url: "/favourite",
+    params: { type: "products" },
+  });
+  return response.data;
 }
 
  

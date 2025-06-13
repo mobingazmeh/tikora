@@ -23,7 +23,7 @@ export async function getProductsReq(data:GetProductsReqParams){
 };
 
 
-    console.log('Request params:', params);
+   // console.log('Request params:', params);
 
     return (await axiosClient({
         method: "get",
